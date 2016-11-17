@@ -1,0 +1,33 @@
+<div class="login jumbotron center-block">
+  <h1>Login</h1>
+  <form [formGroup]="loginForm"   (ngSubmit)="login()">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text"  formControlName="userName"   class="form-control" name="username" placeholder="Username">
+ <small *ngIf="loginForm.controls['userName'].hasError('required') && loginForm.controls['userName'].touched ">
+        Name is required .
+    </small>
+    <small *ngIf="loginForm.controls['userName'].touched && loginForm.controls['userName'].hasError('minlength')">
+       minimum 5 characters needed.
+    </small>
+   
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" formControlName="password"  placeholder="password" >
+  
+  <small *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched ">
+        Password is required.
+    </small>
+    <small *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].hasError('minlength')">
+       minimum 5 characters needed.
+    </small>
+
+    
+  </div>
+  <button type="submit" class="btn btn-default" [disabled]="!loginForm.valid" >Submit</button>
+  </form>
+</div>
+
+<a href="" routerLink="./signUp" routerLinkActive="active">SignUp</a>
