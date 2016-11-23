@@ -2,6 +2,7 @@ import { Component, OnInit  } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import {LoginService} from '../services/loginService';
+import {HttpService} from '../services/httpService';
 import {LoginModel} from '../models/LoginModel';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RouterModule }   from '@angular/router';
@@ -11,7 +12,7 @@ import { RouterModule }   from '@angular/router';
     selector: 'sd-login',
     templateUrl: 'login.component.html',
     styleUrls: ['login.component.css'],
-    providers: [LoginService]
+    providers: [LoginService,HttpService]
 })
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;

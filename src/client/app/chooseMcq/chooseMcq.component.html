@@ -11,14 +11,23 @@
     </select>
  
  <label>Faculty</label>
- <select  (change)="onFacultyChange($event)"  formControlName="selectedFaculty" *ngIf="facultyList.length>0">
+ <select  (ngModelChange)="onFacultyChange($event)"  formControlName="selectedFaculty" *ngIf="facultyList.length>0">
       <option *ngFor="let faculty of facultyList" [ngValue]="faculty">{{faculty.facultyName}}</option>
     </select>
 
- <!--<label>Specialization</label>
- <select   formControlName="specialization" *ngIf="specializationList.length>0">
-      <option *ngFor="let specialization of specializationList" [value]="specialization">{{specialization.name}}</option>
-    </select>-->
+ <label>Specialization</label>
+ <select   formControlName="selectedSpecialization" *ngIf="specializationList!=undefined && specializationList.length>0">
+      <option *ngFor="let specialization of specializationList" [ngValue]="specialization">{{specialization.name}}</option>
+    </select>
 
 	<button type="submit" class="btn btn-default" [disabled]="!countrySelectForm.valid">Search</button>
 	</form>
+    
+    <div>
+        <ul   >
+            <li *ngFor="let selectedMcq of selectedMcqList" (click)="navigateToSelectedExam(selectedMcq)">
+                <span (click)="navigateToSelectedExam(selectedMcq)">{{selectedMcq.exam}}</span>
+                <span>{{selectedMcq.shortDescription}}</span>
+            </li>
+        </ul>
+    </div>

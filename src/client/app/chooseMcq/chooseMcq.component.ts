@@ -17,6 +17,7 @@ export class ChooseMcqComponent implements OnInit  {
     countryList:any=[];
     facultyList:any=[];
     specializationList:any[];
+    selectedMcqList:any[];
   
     countrySelectForm: FormGroup;
    constructor(public fb: FormBuilder, public router: Router,public mcqService: McqService){
@@ -32,12 +33,11 @@ export class ChooseMcqComponent implements OnInit  {
        })
    }
    
-   onFacultyChange(event:any){
+   onFacultyChange(selectedFac:any){
        debugger;
-       let formData = this.countrySelectForm.value;
-        this.mcqService.getSpecializationList(formData.selectedFaculty).subscribe(res=>{
+        this.mcqService.getSpecializationList(selectedFac).subscribe(res=>{
            console.log(res);
-        this.specializationList=res;
+        this.specializationList=res.data;
        })
    }
    
@@ -46,21 +46,27 @@ export class ChooseMcqComponent implements OnInit  {
         let formData = this.countrySelectForm.value;
        
         let searchParams = {
-        "searchText":'',//formData.searchText,
-        "country":"Sri Lanka",// formData.selectedCountry.name,
-        "faculty":"Medicine",//formData.selectedFaculty.facultyName,
-        "speciality":"Bio"// formData.selectedSpecialization.name
+        "searchText":formData.searchText,
+        "country": formData.selectedCountry.name,
+        "faculty":formData.selectedFaculty.facultyName,
+        "speciality": formData.selectedSpecialization.name
       }
        
        this.mcqService. getSearchResultList(searchParams).subscribe(res=>{
            debugger;
            console.log(res);
-           this.router.navigate(['/mcq/mcqList']);
+           this.selectedMcqList=res;
+          // this.router.navigate(['/mcq/mcqList']);
            
         //navigate to next
        })
       
        
+   }
+   
+   navigateToSelectedExam(selectedExam:any){
+       debugger;
+        // this.router.navigate(['/mcq/mcqList']);
    }
    
  
@@ -69,6 +75,8 @@ export class ChooseMcqComponent implements OnInit  {
   this.countrySelectForm  = this.fb.group({
     selectedCountry:[''],
     selectedFaculty:[''],
+    selectedSpecialization:[''],
+    
     searchText:['']
     
 })
