@@ -1,2 +1,48 @@
-<p>mcq list</p>
 
+<div class="row top-mh">
+  <div class="col col-100 logo">
+      <div class="introductiontct">
+        <h2>{{selectedExam?.name}}</h2>
+        <p>{{selectedExam?.longDescription}}</p>
+     </div>
+  </div>
+</div>
+
+<div class="row content-padding exam-info">
+  <div class="col col-100 ">
+     <h3>Exam Provider</h3><p>{{selectedExam?.provider}}</p>
+      <hr>
+  </div>
+</div>
+
+<div class="row content-padding exam-info">
+  <div class="col col-100 ">
+     <h3>Number of Questions available </h3> <p>{{selectedExam?.questionsCount}} Questions</p>
+     <hr>
+  </div>
+</div>
+
+<div class="row content-padding exam-info">
+  <div class="col col-100 ">
+   
+   <h3>Licence Period</h3> 
+   
+    <select   *ngIf="monthsList!=undefined && monthsList.length>0">
+  
+      <option *ngFor="let month of monthsList" [ngValue]="month.id">{{month.value}}</option>
+      </select>
+
+  </div>
+</div>
+
+<div class="row content-padding ">
+     <button class="button button-full exam-infobtn" ng-click="payForExam()">Purchase Now</button>
+
+    <!--<form> 
+      <div class="examprice-infobtn">Total {{examSubscriptionPrice}} {{currencyCode}}</div>
+      <button class="button button-full exam-infobtn" ng-click="payForExam()">Purchase Now</button>
+    <form>-->
+  <!--<div class="col col-100 ">
+    
+  </div>-->
+</div>

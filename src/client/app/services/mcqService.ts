@@ -2,28 +2,15 @@ import { Http,Response,Headers,RequestOptions  } from '@angular/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import {SignUpModel} from '../models/SignUpModel';
-
+import {HttpService} from './httpService';
 @Injectable()
 export class McqService{
     apiEndPoint:string='http://52.77.81.10:9000/api/';
-    constructor(public http:Http){
+    constructor(public http:Http,public httpService:HttpService){
         
     }
     
-//   public  getMcqDropdownInfo(){
-//          let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-//         let options       = new RequestOptions({ headers: headers }); // Create a request option
 
-       
-//       var registrationJson = JSON.stringify(registration);
-      
-        
-//         return this.http.post('http://52.77.81.10:9000/api/consumer/account/singup', registrationJson, options) // ...using post request
-//                          .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
-//                         // .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
- 
-        
-//     }
     
    public  getCountryList() {
       
@@ -64,7 +51,7 @@ export class McqService{
     }
     
  public  getSpecializationList(selectedFaculty:any) {
-       var url=this.apiEndPoint+'/consumer/specialize/specializes/faculty/id/'+selectedFaculty;//'specializations';
+       var url=this.apiEndPoint+'consumer/specialize/specializes/faculty/id/'+selectedFaculty;//'specializations';
        
          return this.http.get(url) // ...using post request
                          .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
@@ -97,6 +84,22 @@ export class McqService{
   
 
  }
-
+ 
+ public getQuestionsByServiceId(id:number){
+      var url='consumer/selectedservice';
+      var params={
+      "serviceId": id
+    }
+  let searchOptionsJson = JSON.stringify(params);
+   let headers=this.httpService.getHttpHeaders();
+             headers.append("Content-Type", 'application/json');
+              var parameters: Object = {
+                    url: url,
+                    headers: headers,
+                    body:searchOptionsJson}
+  
+   return this.httpService.httpPostRequestObservable(parameters);
+      
+ }
     
 }

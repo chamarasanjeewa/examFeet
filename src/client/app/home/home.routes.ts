@@ -24,7 +24,7 @@ export const HomeRoutes: Route[] = [
         children:[
            { path: '', redirectTo: 'chooseMcq', pathMatch: 'full' },
            { path: 'chooseMcq',  component: ChooseMcqComponent, pathMatch: 'full' },
-           { path: 'mcqList',  component: McqListComponent, pathMatch: 'full' },
+           { path: 'mcqList/:id',  component: McqListComponent },
            
            
            { path: 'question',  component: QuestionComponent},

@@ -3,6 +3,7 @@ import {McqService} from '../services/mcqService';
 import { NameListService } from '../shared/index';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {HttpService} from '../services/httpService';
 /**
  * This class represents the lazy loaded AboutComponent.
  */
@@ -11,7 +12,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   selector: 'sd-about',
   templateUrl:'choosemcq.component.html',
   styleUrls: ['chooseMcq.component.css'],
-   providers: [McqService]
+   providers: [McqService,HttpService]
 })
 export class ChooseMcqComponent implements OnInit  {
     countryList:any=[];
@@ -34,15 +35,15 @@ export class ChooseMcqComponent implements OnInit  {
    }
    
    onFacultyChange(selectedFac:any){
-       debugger;
-        this.mcqService.getSpecializationList(selectedFac).subscribe(res=>{
+   
+        this.mcqService.getSpecializationList(selectedFac.facultyId).subscribe(res=>{
            console.log(res);
         this.specializationList=res.data;
        })
    }
    
    getExams(){
-       debugger;
+      
         let formData = this.countrySelectForm.value;
        
         let searchParams = {
@@ -66,7 +67,7 @@ export class ChooseMcqComponent implements OnInit  {
    
    navigateToSelectedExam(selectedExam:any){
        debugger;
-        // this.router.navigate(['/mcq/mcqList']);
+       this.router.navigate(['/mcq/mcqList',selectedExam.serviceId]);
    }
    
  
@@ -76,7 +77,6 @@ export class ChooseMcqComponent implements OnInit  {
     selectedCountry:[''],
     selectedFaculty:[''],
     selectedSpecialization:[''],
-    
     searchText:['']
     
 })
