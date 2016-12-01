@@ -10,6 +10,21 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 export class McqListModule { 
     
+    onMonthChange(event){
+        debugger;
+    }
     
-    
+    private getServiceInfo=function(){
+   
+    var params={
+      "serviceId": $scope.selectedExam.serviceId
+    }
+
+    examService.getServiceInfo(params).then(function(result){
+          $scope.selectedService=result.data;
+          storageService.setSelectedService(result.data);
+          },function (error) {
+            alert('error subscribeToExam');
+       });
+   }
 }

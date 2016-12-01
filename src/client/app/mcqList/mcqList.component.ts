@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit,NgModule  } from '@angular/core';
 import {McqService} from '../services/mcqService';
 import { NameListService } from '../shared/index';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -34,16 +34,45 @@ export class McqListComponent implements OnInit  {
     selectedExamMonth:any;
     examSubscriptionPrice:any;
     examPerMonthPrice:any;
+    priceSelectForm: FormGroup;
    constructor(public fb: FormBuilder,public mcqService: McqService,private route:ActivatedRoute){
       
      
    }
  
  calculateExamPrice(selectedExamMonth:any){
+     debugger;
    this.selectedExamMonth=selectedExamMonth;
-   	this.examSubscriptionPrice=this.examPerMonthPrice*selectedExamMonth.id;//$stateParams.selectedExam.price* $scope.numberOfMonths;
+   	this.examSubscriptionPrice=this.selectedExam.price.price*selectedExamMonth.id;//$stateParams.selectedExam.price* $scope.numberOfMonths;
 
    }
+   
+   private payForExam(){
+       
+   }
+   
+    // $scope.payForExam=function(){
+     
+    // if(appSettings.isProduction){
+
+    //   PaypalService.initPaymentUI().then(function () {
+        
+    //     var payingAmount=parsePayingAmount();
+        
+    //   if(payingAmount>0){
+
+    //      PaypalService.makePayment(payingAmount,$scope.selectedExam.price.currencyCode, "Total Amount").then(function (response) {
+    //      $ionicLoading.show({template: "Payment accepted via paypal",duration:2000}).then(function(){
+    //          $scope.subscribeToExam();
+    //         });
+           
+    //     }, function (error) {
+
+    //       $ionicLoading.show({template: error,duration:2000}).then(function(){
+           
+    //         });
+    //        });
+    //    }
  
  ngOnInit() {
     
@@ -58,6 +87,11 @@ export class McqListComponent implements OnInit  {
        },()=>{})
     });
 
+ this.priceSelectForm  = this.fb.group({
+    selectedPrice:[''],
+   
+    
+})
   
  }
 }

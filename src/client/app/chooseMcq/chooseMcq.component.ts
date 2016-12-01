@@ -54,12 +54,10 @@ export class ChooseMcqComponent implements OnInit  {
       }
        
        this.mcqService. getSearchResultList(searchParams).subscribe(res=>{
-           debugger;
+          
            console.log(res);
            this.selectedMcqList=res;
           // this.router.navigate(['/mcq/mcqList']);
-           
-        //navigate to next
        })
       
        
