@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import {McqService} from '../services/mcqService';
-import { NameListService } from '../shared/index';
+
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {HttpService} from '../services/httpService';

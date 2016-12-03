@@ -101,5 +101,38 @@ export class McqService{
    return this.httpService.httpPostRequestObservable(parameters);
       
  }
+ 
+ public getSubscribedSessions(userId:number){
+     
+ var url='/consumer/services/subscriptions';
+      var params={
+      "userId": userId
+    }
+   		 
+    let searchOptionsJson = JSON.stringify(params);
+  
+     let headers=this.httpService.getHttpHeaders();
+             headers.append("Content-Type", 'application/json');
+              var parameters: Object = {
+                    url: url,
+                    headers: headers,
+                    body:searchOptionsJson}
+  
+   return this.httpService.httpPostRequestObservable(parameters);
+// var url=ApiEndpoint.url+'/consumer/services/subscriptions';
+//   var searchOptionsJson = JSON.stringify(params);
+//   return $http.post(url, searchOptionsJson)
+//    .then(function (response) {
+//           return response;
+//       }).catch(function (e) {
+//           console.log("error", e);
+//            loggerService.showServerErrorToast();
+//                    // throw e;
+//       }) .finally(function () {
+
+//       });
+
+
+}
     
 }

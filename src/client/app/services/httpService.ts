@@ -57,7 +57,7 @@ export class HttpService {
         var headers: Headers = new Headers();
        // headers.append('Cache-Control', 'no-cache');
        // headers.append('X-Device', 'Mobile');
-
+       
         return headers;
     }
 

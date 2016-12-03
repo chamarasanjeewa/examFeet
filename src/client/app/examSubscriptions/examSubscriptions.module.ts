@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { McqListComponent } from './mcqList.component';
+import { ExamSubscriptionsComponent } from './examSubscriptions.component';
 import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
     imports: [CommonModule,ReactiveFormsModule],
-    declarations: [McqListComponent],
-    exports: [McqListComponent]
+    declarations: [ExamSubscriptionsComponent],
+    exports: [ExamSubscriptionsComponent]
 })
 
-export class McqListModule { 
+export class ExamSubscriptionsModule { 
     
    
 }
