@@ -18,7 +18,7 @@ export class PaypalComponent {
   }
   
    ngOnInit() {
-       debugger;
+  
     this.amount= this.sharedService.examPriceInfo;
          this.sharedService.examPriceInfo=null;
           
@@ -26,7 +26,7 @@ export class PaypalComponent {
     }
     
     postInfo(){
-        debugger;
+       
            
             let headers=this.httpService.getHttpHeaders();
              headers.append('Content-Type', 'text/html; charset=utf-8');
@@ -39,7 +39,7 @@ export class PaypalComponent {
                 //.timeout(REQUEST_TIME_OUT_TIME, { "status": 408 })
                // .map(response => response.json())
                   .subscribe(res => {
-                debugger;
+           
                 console.log(res);
                // this.router.navigate(['/']);
             },

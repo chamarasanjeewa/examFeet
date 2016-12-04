@@ -18,11 +18,12 @@ import { McqPurchaseModule } from './mcqPurchase/mcqPurchase.module';
 import { McqResultModule } from './mcqResult/mcqResult.module';
 import {ExamSubscriptionsModule} from './examSubscriptions/examSubscriptions.module';
 import {PaypalModule} from './paypal/Paypal.module'
+import {DashBoardModule} from './dashBoard/DashBoard.module'
 
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  imports: [BrowserModule,PaypalModule, HttpModule,McqPurchaseModule,McqResultModule,ExamSubscriptionsModule,ReactiveFormsModule , RouterModule.forRoot(routes),ChooseMcqModule,McqModule,QuestionModule, AboutModule, HomeModule,LoginModule,SignUpModule, SharedModule.forRoot()],
+  imports: [BrowserModule,PaypalModule,DashBoardModule, HttpModule,McqPurchaseModule,McqResultModule,ExamSubscriptionsModule,ReactiveFormsModule , RouterModule.forRoot(routes),ChooseMcqModule,McqModule,QuestionModule, AboutModule, HomeModule,LoginModule,SignUpModule, SharedModule.forRoot()],
   declarations: [AppComponent],
   providers: [{
     provide: APP_BASE_HREF,

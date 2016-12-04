@@ -6,6 +6,8 @@ import {QuestionComponent} from '../question/index';
 import {ChooseMcqComponent} from '../chooseMcq/index';
 import {McqPurchaseComponent} from '../mcqPurchase/index';
 import {PaypalComponent} from '../paypal/paypal.component';
+import {DashBoardComponent} from '../dashBoard/dashBoard.component';
+
 import {ExamSubscriptionsComponent} from '../examSubscriptions/index';
 import { CanActivateViaAuthGuard } from '../shared/canActivateAuthGuard';
 //import { HomeRoutes,ActivatedRouteSnapshot, RouterStateSnapshot} from './home.routes';
@@ -20,10 +22,15 @@ export const HomeRoutes: Route[] = [
           { path: 'mySubscriptions',  component: ExamSubscriptionsComponent, canActivate: [
    
     CanActivateViaAuthGuard
+  ]}, { path: 'dashBoard',  component: DashBoardComponent, canActivate: [
+   
+    CanActivateViaAuthGuard
   ]},
         {
         path: 'mcq',
-        component: McqComponent,
+        component: McqComponent, canActivate: [
+    CanActivateViaAuthGuard
+  ],
         children:[
            { path: '', redirectTo: 'chooseMcq', pathMatch: 'full' },
            { path: 'chooseMcq',  component: ChooseMcqComponent, pathMatch: 'full' },

@@ -43,7 +43,7 @@ export class McqPurchaseComponent implements OnInit {
     }
 
     calculateExamPrice(selectedExamMonth: any) {
-        debugger;
+      
         this.selectedExamMonth = selectedExamMonth;
         if (this.selectedExam != undefined) {
             this.examSubscriptionPrice = this.selectedExam.price.price * selectedExamMonth.id;//$stateParams.selectedExam.price* $scope.numberOfMonths;
@@ -52,7 +52,7 @@ export class McqPurchaseComponent implements OnInit {
 
     private payForExam() {
         this.sharedService.examPriceInfo=this.examSubscriptionPrice;
-        this.router.navigate(['/mcq/paypal',this.examSubscriptionPrice]);
+        this.router.navigate(['/mcq/paypal']);
  
     }
 

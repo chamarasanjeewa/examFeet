@@ -64,8 +64,8 @@ export class ChooseMcqComponent implements OnInit  {
    }
    
    navigateToSelectedExam(selectedExam:any){
-       debugger;
-       this.router.navigate(['/mcq/mcqList',selectedExam.serviceId]);
+    
+       this.router.navigate(['/mcq/mcqPurchase',selectedExam.serviceId]);
    }
    
  

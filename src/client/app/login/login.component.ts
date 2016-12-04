@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       let formData = this.loginForm.value;
         this.loginService.authenticateUser(formData)
             .subscribe(res => {
-                debugger;
+                
                 localStorage.setItem('userInfo',JSON.stringify(res))
     //this.sharedService.sessionInfo=res;
                 console.log(res);

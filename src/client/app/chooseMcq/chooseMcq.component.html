@@ -7,17 +7,17 @@
   
 <label>Country</label>
   <select   formControlName="selectedCountry" *ngIf="countryList.length>0">
-      <option *ngFor="let country of countryList" [ngValue]="country">{{country.name}}</option>
+      <option *ngFor="let country of countryList"  [ngValue]="country">{{country.name}}</option>
     </select>
  
  <label>Faculty</label>
  <select  (ngModelChange)="onFacultyChange($event)"  formControlName="selectedFaculty" *ngIf="facultyList.length>0">
-      <option *ngFor="let faculty of facultyList" [ngValue]="faculty">{{faculty.facultyName}}</option>
+      <option *ngFor="let faculty of facultyList"   [ngValue]="faculty">{{faculty.facultyName}}</option>
     </select>
 
  <label>Specialization</label>
  <select   formControlName="selectedSpecialization" *ngIf="specializationList!=undefined && specializationList.length>0">
-      <option *ngFor="let specialization of specializationList" [ngValue]="specialization">{{specialization.name}}</option>
+      <option *ngFor="let specialization of specializationList"  [ngValue]="specialization">{{specialization.name}}</option>
     </select>
 
 	<button type="submit" class="btn btn-default" [disabled]="!countrySelectForm.valid">Search</button>
