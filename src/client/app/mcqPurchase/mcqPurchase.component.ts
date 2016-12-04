@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { SharedService } from '../shared/sharedService';
+import { HttpService } from '../services/httpService';
 /**
  * This class represents the lazy loaded AboutComponent.
  */
@@ -12,7 +13,7 @@ import { SharedService } from '../shared/sharedService';
     selector: 'mcq-purchase',
     templateUrl: 'mcqPurchase.component.html',
     styleUrls: ['mcqPurchase.component.css'],
-    providers: [McqService]
+    providers: [McqService,HttpService]
 })
 export class McqPurchaseComponent implements OnInit {
     id: any;

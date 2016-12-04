@@ -5,35 +5,39 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { SharedService } from '../shared/sharedService';
-/**
- * This class represents the lazy loaded AboutComponent.
- */
+import { HttpService } from '../services/httpService';
+
 @Component({
     moduleId: module.id,
     selector: 'exam-subscriptions',
     templateUrl: 'examSubscriptions.component.html',
     styleUrls: ['examSubscriptions.component.css'],
-    providers: [McqService]
+    providers: [McqService,HttpService]
 })
 export class ExamSubscriptionsComponent implements OnInit {
    
     priceSelectForm: FormGroup;
-    constructor(public fb: FormBuilder, public mcqService: McqService, private route: ActivatedRoute,private router:Router,private sharedService:SharedService) {
+    examList:any;
+    constructor(public fb: FormBuilder, public mcqService: McqService, private route: ActivatedRoute,private router:Router,public sharedService:SharedService) {
 
-
+this.getSubscriptionsList();
     }
     
  getSubscriptionsList(){
-     let userId=this.sharedService.sessionInfo.userId;
+     var userInfo= localStorage.getItem('userInfo')
+    if(userInfo!=undefined && userInfo!=null){
+        var obj=JSON.parse(userInfo) 
+        let userId=+obj.userId;
      this.mcqService.getSubscribedSessions(userId).subscribe(res => {
-                debugger;
+               this.examList=res;
                 console.log(res);
-                this.router.navigate(['/']);
+           
             },
             err => {
 
                 console.log(err);
             });
+     }
  }
      
     

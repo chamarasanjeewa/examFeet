@@ -104,7 +104,7 @@ export class McqService{
  
  public getSubscribedSessions(userId:number){
      
- var url='/consumer/services/subscriptions';
+ var url='consumer/services/subscriptions';
       var params={
       "userId": userId
     }

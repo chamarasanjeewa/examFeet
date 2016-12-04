@@ -22,7 +22,9 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-         this.loginForm  = this.fb.group({
+    localStorage.setItem('userInfo',null);
+    
+    this.loginForm  = this.fb.group({
     userName:[this.loginModel.userName, Validators.compose([
                                         Validators.required,
                                        // Validators.minLength(5)
@@ -44,7 +46,8 @@ export class LoginComponent implements OnInit {
         this.loginService.authenticateUser(formData)
             .subscribe(res => {
                 debugger;
-    this.sharedService.sessionInfo=res;
+                localStorage.setItem('userInfo',JSON.stringify(res))
+    //this.sharedService.sessionInfo=res;
                 console.log(res);
                 this.router.navigate(['/']);
             },

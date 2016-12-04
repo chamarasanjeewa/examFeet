@@ -17,24 +17,12 @@ export class HomeComponent implements OnInit {
   errorMessage: string;
   names: any[] = [];
 
-  /**
-   * Creates an instance of the HomeComponent with the injected
-   * NameListService.
-   *
-   * @param {NameListService} nameListService - The injected NameListService.
-   */
   constructor() {}
 
-  /**
-   * Get the names OnInit
-   */
   ngOnInit() {
     this.getNames();
   }
 
-  /**
-   * Handle the nameListService observable
-   */
   getNames() {
     
   }

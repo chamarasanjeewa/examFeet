@@ -7,20 +7,20 @@ import {ChooseMcqComponent} from '../chooseMcq/index';
 import {McqPurchaseComponent} from '../mcqPurchase/index';
 import {PaypalComponent} from '../paypal/paypal.component';
 import {ExamSubscriptionsComponent} from '../examSubscriptions/index';
-
+import { CanActivateViaAuthGuard } from '../shared/canActivateAuthGuard';
+//import { HomeRoutes,ActivatedRouteSnapshot, RouterStateSnapshot} from './home.routes';
 export const HomeRoutes: Route[] = [
   
   {
     path: '',
      component:HomeComponent,
     children:[
-     
           { path: '', redirectTo: 'about', pathMatch: 'full' },
           { path: 'about',  component: AboutComponent},
-          { path: 'mySubscriptions',  component: ExamSubscriptionsComponent}
-          
-       ,
-        
+          { path: 'mySubscriptions',  component: ExamSubscriptionsComponent, canActivate: [
+   
+    CanActivateViaAuthGuard
+  ]},
         {
         path: 'mcq',
         component: McqComponent,
