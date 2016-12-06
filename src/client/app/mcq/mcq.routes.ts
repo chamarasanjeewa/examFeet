@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 import { McqComponent } from './index';
-import {QuestionComponent} from '../question/index';
+//import {QuestionComponent} from '../question/index';
 
 export const McqRoutes: Route[] = [
     {

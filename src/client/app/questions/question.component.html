@@ -1,0 +1,20 @@
+Question Component
+
+<video *ngIf="!!question.videoUrl" width="100%" height="auto" controls>
+  <source [src]="question.videoUrl" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<audio *ngIf="!!question.audioUrl" controls>
+  <source [src]="question.audioUrl" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<img *ngIf="question.imageUrl" [src]="question.imageUrl" width="100%" height="auto" />
+
+<p>{{question.content}}</p>
+
+<!--
+<div *ngIf="question.questionType === QUESTION_TYPE.MCQ">  
+  <input *ngFor="let item in question.answers"  type="radio" name="answer" [(ngModel)]="answer" [value]="item">
+</div>-->

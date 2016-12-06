@@ -1,0 +1,33 @@
+<h2>Search Exams</h2>
+
+<form [formGroup]="searchForm" (ngSubmit)="searchExams()">
+
+    <label>search text</label>
+    <input type="text" class="form-control" formControlName="searchText" placeholder="search text">
+
+    <label>Country</label>
+    <select formControlName="country" *ngIf="!!countries.length">
+      <option *ngFor="let opt of countries" [ngValue]="opt">{{opt.name}}</option>
+    </select>
+
+    <label>Faculty</label>
+    <select formControlName="faculty" (ngModelChange)="loadFacultySpecializations($event)"  *ngIf="!!faculties.length"  >
+      <option *ngFor="let opt of faculties" [ngValue]="opt">{{opt.facultyName}}</option>
+    </select>
+
+    <label>Specialization</label>
+    <select formControlName="speciality" *ngIf="!!faculties && !!facultySpecializations.length">
+      <option *ngFor="let opt of facultySpecializations"  [ngValue]="opt">{{opt.name}}</option>
+    </select>
+
+    <button type="submit" class="btn btn-default" [disabled]="!searchForm.valid">Search</button>
+</form>
+
+<div>
+    <ul>
+        <li *ngFor="let exam of exams" (click)="selectExam(exam)">
+            <span>{{exam.exam}}</span>
+            <span>{{exam.shortDescription}}</span>
+        </li>
+    </ul>
+</div>
