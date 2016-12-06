@@ -20,7 +20,7 @@ import { ExamSubscriptionsModule } from './examSubscriptions/examSubscriptions.m
 import { PaypalModule } from './paypal/Paypal.module'
 import { DashBoardModule } from './dashBoard/DashBoard.module'
 //import { ExamModule } from './exam/exam.module';
-
+import {ExamStartModule } from './examStart/examStart.module';
 import { SharedModule } from './shared/shared.module';
 import { ExamsModule } from './exams/exams.module';
 
@@ -41,6 +41,7 @@ import { ExamsModule } from './exams/exams.module';
     HomeModule, 
     LoginModule, 
     SignUpModule,
+    ExamStartModule,
     SharedModule.forRoot(),
     //ExamModule,
     ExamsModule],

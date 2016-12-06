@@ -1,9 +1,8 @@
 import { Component, OnInit, NgModule  } from '@angular/core';
 import {McqService} from '../services/mcqService';
-
+import { Router,RouterModule } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
 import { SharedService } from '../shared/sharedService';
 import { HttpService } from '../services/httpService';
 
@@ -23,7 +22,9 @@ export class ExamStartComponent implements OnInit {
 
     }
 
-     
+     startExam(){
+          this.router.navigate(['/mcq/examStart']);
+     }
     
    
     ngOnInit() {

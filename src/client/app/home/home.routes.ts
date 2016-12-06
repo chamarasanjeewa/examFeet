@@ -7,7 +7,7 @@ import {ChooseMcqComponent} from '../chooseMcq/index';
 import {McqPurchaseComponent} from '../mcqPurchase/index';
 import {PaypalComponent} from '../paypal/paypal.component';
 import {DashBoardComponent} from '../dashBoard/dashBoard.component';
-
+import {ExamStartComponent} from '../examStart/index';
 import {ExamSubscriptionsComponent} from '../examSubscriptions/index';
 import { CanActivateViaAuthGuard } from '../shared/canActivateAuthGuard';
 //import { HomeRoutes,ActivatedRouteSnapshot, RouterStateSnapshot} from './home.routes';
@@ -29,14 +29,14 @@ export const HomeRoutes: Route[] = [
         {
         path: 'mcq',
         component: McqComponent, canActivate: [
-    CanActivateViaAuthGuard
+        CanActivateViaAuthGuard
   ],
         children:[
            { path: '', redirectTo: 'chooseMcq', pathMatch: 'full' },
            { path: 'chooseMcq',  component: ChooseMcqComponent, pathMatch: 'full' },
            { path: 'mcqPurchase/:id',  component: McqPurchaseComponent },
-            { path: 'paypal',  component: PaypalComponent }//,
-          
+           { path: 'paypal',  component: PaypalComponent },
+           { path: 'examStart',  component: ExamStartComponent }
            
           //  { path: 'question',  component: QuestionComponent},
           //  { path: 'question',  component: QuestionComponent,outlet:'question'}

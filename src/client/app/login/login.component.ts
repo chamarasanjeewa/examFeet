@@ -1,12 +1,11 @@
 import { Component, OnInit  } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,RouterModule } from '@angular/router';
 import { Http } from '@angular/http';
 import {LoginService} from '../services/loginService';
 import {HttpService} from '../services/httpService';
 import {ValidationService} from '../services/validationService';
 
 import { FormGroup, FormBuilder, Validators,FormControl } from '@angular/forms';
-import { RouterModule }   from '@angular/router';
 import { SharedService } from '../shared/sharedService';
 @Component({
     moduleId: module.id,
@@ -46,7 +45,7 @@ export class LoginComponent implements OnInit {
       let formData = this.loginForm.value;
         this.loginService.authenticateUser(formData)
             .subscribe(res => {
-                
+                debugger;
                 localStorage.setItem('userInfo',JSON.stringify(res))
 
                 console.log(res);
