@@ -17,7 +17,7 @@ import { SharedService } from '../shared/sharedService';
 })
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
-    //loginModel:LoginModel=new LoginModel();
+    
     constructor(public fb: FormBuilder, public router: Router, public http: Http, public loginService: LoginService,public sharedService:SharedService) {
       
     }
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     
     this.loginForm  = this.fb.group({
     userName:['', Validators.compose([
-                                        Validators.required,ValidationService.emailValidator
+                                        Validators.required,ValidationService.emailValidator//,
                                        // Validators.minLength(5)
                                         ]) ],
     password: ['',Validators.compose([

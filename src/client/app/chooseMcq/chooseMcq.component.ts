@@ -64,8 +64,8 @@ export class ChooseMcqComponent implements OnInit  {
    }
    
    navigateToSelectedExam(selectedExam:any){
-       this.router.navigate(['/mcq/', selectedExam.serviceId]);    
-       // this.router.navigate(['/mcq/mcqPurchase',selectedExam.serviceId]);
+       //this.router.navigate(['/mcq/', selectedExam.serviceId]);    
+        this.router.navigate(['/mcq/mcqPurchase',selectedExam.serviceId]);
    }
    
  
