@@ -3,14 +3,18 @@
   <form [formGroup]="loginForm"   (ngSubmit)="login()">
   <div class="form-group">
     <label for="username">Username</label>
-    <input type="text"  formControlName="userName"   class="form-control" name="username" placeholder="Username">
+    <label for="email">Email</label>
+  <input formControlName="userName" id="email" />
+  <control-messages ></control-messages>
+
+    <!--<input type="email"  formControlName="userName"   class="form-control" name="username" placeholder="Username">
  <small *ngIf="loginForm.controls['userName'].hasError('required') && loginForm.controls['userName'].touched ">
         Name is required .
     </small>
     <small *ngIf="loginForm.controls['userName'].touched && loginForm.controls['userName'].hasError('minlength')">
        minimum 5 characters needed.
     </small>
-   
+   -->
   </div>
 
   <div class="form-group">
