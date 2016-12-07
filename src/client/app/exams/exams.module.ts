@@ -16,4 +16,4 @@ import { ExamTryComponent } from './exam.try.component';
 
 export class ExamsModule {
 
- }
+}

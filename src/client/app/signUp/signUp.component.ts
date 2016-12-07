@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
-import { SignUpModel } from '../models/SignUpModel';
 import { SignUpService } from '../services/signUpService';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import {ValidationService} from '../services/validationService';
+import { SharedService } from '../shared/sharedService';
+import {Country } from '../models/country';
 //import * as _ from 'underscore';
 /**
  * This class represents the lazy loaded AboutComponent.
@@ -17,7 +19,13 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 })
 export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
-  signUpModel: SignUpModel = new SignUpModel();
+   countries = [
+     new Country(1, 'USA' ),
+     new Country(2, 'India' ),
+     new Country(3, 'Australia' ),
+     new Country(4, 'Brazil'),
+     new Country(5, 'Russia')
+  ];
 
   constructor(public fb: FormBuilder, public router: Router, public http: Http, public signUpService: SignUpService) {
 
@@ -25,16 +33,19 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {
     this.signUpForm = this.fb.group({
-      email: [this.signUpModel.email, Validators.compose([
-        Validators.required,
-        Validators.minLength(5)])]
+      email: ['', Validators.compose([
+        Validators.required,ValidationService.emailValidator])]//ValidationService.emailValidator
       ,
-      passwords: this.fb.group(this.initPasswordValidationModel())
+      passwords: this.fb.group(this.initPasswordValidationModel(), {validator: ValidationService.areEqual})
       ,
       telephone: this.fb.group(this.initTelephoneValidationModel())
     })
 
 
+  }
+  
+  onInput(){
+      
   }
 
   initPasswordValidationModel() {

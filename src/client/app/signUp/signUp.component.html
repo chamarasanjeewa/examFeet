@@ -6,39 +6,54 @@
 	<form [formGroup]="signUpForm" novalidate (ngSubmit)="signup()">
 		<div class="form-group">
 			<label for="email">Email</label>
-			<input type="email" formControlName="email" class="form-control" id="email" placeholder="email" required>
-
+			<input type="email" formControlName="email" class="form-control" id="email" placeholder="email" >
+            <control-messages [control]="signUpForm.controls.email"></control-messages>
+  
+<!--
 			<small *ngIf="signUpForm.controls['email'].hasError('required') && signUpForm.controls['email'].touched ">
         Name is required .
     </small>
 			<small *ngIf="signUpForm.controls['email'].touched && signUpForm.controls['email'].hasError('minlength')">
        not a valid email.
-    </small>
+    </small>-->
 
 		</div>
 
 
 		<div formGroupName="passwords">
 			<label>password</label>
-			<input type="text" formControlName="password" placeholder="password">
-			<small *ngIf="signUpForm.controls.passwords.controls.password.touched &&!signUpForm.controls.passwords.controls.password.valid">
+			<input type="password" formControlName="password" placeholder="password">
+             <control-messages [control]="signUpForm.controls.passwords.controls.password"></control-messages>
+  
+			<!--<small *ngIf="signUpForm.controls.passwords.controls.password.touched &&!signUpForm.controls.passwords.controls.password.valid">
                     Required 
-                    </small>
+                    </small>-->
 		</div>
 		<div formGroupName="passwords">
 			<label>password</label>
-			<input type="text" formControlName="confirmPassword" placeholder="confirm password">
-			<small *ngIf="signUpForm.controls.passwords.controls.confirmPassword.touched &&!signUpForm.controls.passwords.controls.confirmPassword.required">
+			<input type="password" formControlName="confirmPassword" placeholder="confirm password">
+			  <control-messages [control]="signUpForm.controls.passwords.controls.confirmPassword"></control-messages>
+  
+            <!--<small *ngIf="signUpForm.controls.passwords.controls.confirmPassword.touched &&!signUpForm.controls.passwords.controls.confirmPassword.required">
                     Required 
-                    </small>
+                    </small>-->
+        <control-messages [control]="signUpForm.controls.passwords"></control-messages>
+  
 		</div>
 
 		<div formGroupName="telephone">
 			<label>country code</label>
-			<input type="text" formControlName="countryCode" placeholder="country code">
-			<small *ngIf="signUpForm.controls.telephone.controls.countryCode.touched &&!signUpForm.controls.telephone.controls.countryCode.valid">
+           <!--<select formControlName="countryCode" (input)="onInput($event)">
+  <option *ngFor="country of countries" value= {{country.id}}>{{country.name}}</option>
+</select>-->
+
+<select   formControlName="countryCode" *ngIf="countries!=undefined && countries.length>0">
+      <option *ngFor="let country of countries"  [ngValue]="country">{{country.name}}</option>
+    </select>
+			<!--<input type="text" formControlName="countryCode" placeholder="country code">-->
+			<!--<small *ngIf="signUpForm.controls.telephone.controls.countryCode.touched &&!signUpForm.controls.telephone.controls.countryCode.valid">
                     Required 
-                    </small>
+                    </small>-->
 		</div>
 
 		<div formGroupName="telephone">
@@ -48,8 +63,6 @@
                     Required 
                     </small>
 		</div>
-
-
 
 		<button type="submit" class="btn btn-default" [disabled]="!signUpForm.valid">Sign up</button>
 	</form>
