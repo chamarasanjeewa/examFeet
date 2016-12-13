@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashBoardComponent } from './dashBoard.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { DashBoardRoutes, DashBoardComponent } from './index';
+
 @NgModule({
-    imports: [CommonModule,ReactiveFormsModule],
+    imports: [CommonModule, RouterModule.forChild(DashBoardRoutes)],
     declarations: [DashBoardComponent],
     exports: [DashBoardComponent]
 })
 
-export class DashBoardModule { 
-    
-   
-}
+export class DashBoardModule {}

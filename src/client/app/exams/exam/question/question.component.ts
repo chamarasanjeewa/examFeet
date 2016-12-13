@@ -1,14 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-// import { Router } from '@angular/router';
-// import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { QUESTION_TYPE, QuestionType } from './question.constants';
+import { QUESTION_TYPE, QuestionType } from './index';
 
 @Component({
     moduleId: module.id,
     selector: 'sd-question',
     templateUrl: 'question.component.html',
-    styleUrls: ['question.component.css'],
-    providers: []
+    styleUrls: ['question.component.css']
 })
 
 export class QuestionComponent implements OnInit {

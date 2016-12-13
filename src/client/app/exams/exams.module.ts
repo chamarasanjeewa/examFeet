@@ -2,16 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { QuestionsModule } from '../questions/questions.module';
-import { ExamsHomeomponent } from './exams.home.component';
-import { ExamsComponent } from './exams.component';
-import { ExamComponent } from './exam.component';
-import { ExamTryComponent } from './exam.try.component';
+import { ExamModule } from './exam/exam.module';
+import { StartModule } from './exam/start/start.module';
+import { ExamsRoutes, ExamsComponent } from './index';
+
 
 @NgModule({
-    imports: [CommonModule, ReactiveFormsModule, RouterModule, QuestionsModule],
-    declarations:  [ExamsHomeomponent, ExamsComponent, ExamComponent, ExamTryComponent],
-    exports: [ExamsHomeomponent, ExamsComponent, ExamComponent, ExamTryComponent]
+    imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild(ExamsRoutes), ExamModule, StartModule],
+    declarations:  [ExamsComponent],
+    exports: [ExamsComponent]
 })
 
 export class ExamsModule {

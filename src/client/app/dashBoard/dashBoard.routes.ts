@@ -1,9 +1,6 @@
-import { Route } from '@angular/router';
+import { Routes } from '@angular/router';
 import { DashBoardComponent } from './index';
 
-export const DashBoardRoutes: Route[] = [
-  {
-    path: 'dashBoard',
-    component: DashBoardComponent
-  }
+export const DashBoardRoutes: Routes = [
+  { path: '', pathMatch: 'full', component: DashBoardComponent }
 ];

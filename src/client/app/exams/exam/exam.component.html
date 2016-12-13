@@ -1,10 +1,28 @@
-
-<h2>{{exam?.name}}</h2>
+<h2>
+    {{exam?.name}}</h2>
 <p>{{exam?.longDescription}}</p>
 
 <div>Exam Provider <span>{{exam?.provider}}</span></div>
 <div>Number of questions available <span>{{exam?.questionsCount}}</span></div>
 
+<div>
+    <a [routerLink]="['try']">Try</a>
+</div>
 
-<!--<a [routerLink]="['purchase']" >Purchase</a>
-<a [routerLink]="['purchase']" >Try</a>-->
+
+<div>
+    <div class="row content-padding exam-info">
+        <div class="col col-100 ">
+            <h3>Licence Period</h3>
+
+            <select (ngModelChange)="calculateSubscriptionCost($event)">
+                <option *ngFor="let opt of months">{{opt.value}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row content-padding">{{subscriptionCost}}</div>
+    <div class="row content-padding ">
+        <button type="submit" class="button button-full exam-infobtn" (click)="purchaseSubsciption()">Purchase Now</button>
+    </div>
+</div>

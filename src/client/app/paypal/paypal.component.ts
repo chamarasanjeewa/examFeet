@@ -4,12 +4,14 @@ import { ActivatedRoute } from '@angular/router';
 import { SharedService } from '../shared/sharedService';
 import {HttpService} from '../services/httpService';
 import { Http, Headers } from '@angular/http';
+
 @Component({
   moduleId: module.id,
   selector: 'paypal-comp',
   templateUrl: 'paypal.component.html',
   styleUrls: ['paypal.component.css']
 })
+
 export class PaypalComponent {
   title = 'PayPal Test';
   amount:any;

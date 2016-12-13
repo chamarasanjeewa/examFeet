@@ -1,9 +1,6 @@
-import { Route } from '@angular/router';
+import { Routes } from '@angular/router';
 import { AboutComponent } from './index';
 
-export const AboutRoutes: Route[] = [
-  {
-    path: 'about',
-    component: AboutComponent
-  }
+export const AboutRoutes: Routes = [
+  { path: '', pathMatch: 'full', component: AboutComponent }
 ];

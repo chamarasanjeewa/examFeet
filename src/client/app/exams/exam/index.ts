@@ -1,3 +1,2 @@
-
-// export * from './exam.component';
-// export * from './exam.routes';
+export * from './exam.component';
+//export * from './exam.routes';

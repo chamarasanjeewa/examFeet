@@ -11,7 +11,7 @@
     </select>
 
     <label>Faculty</label>
-    <select formControlName="faculty" (ngModelChange)="loadFacultySpecializations($event)"  *ngIf="!!faculties.length"  >
+    <select formControlName="faculty" (ngModelChange)="loadFacultySpecializations($event)" *ngIf="!!faculties.length">
       <option *ngFor="let opt of faculties" [ngValue]="opt">{{opt.facultyName}}</option>
     </select>
 

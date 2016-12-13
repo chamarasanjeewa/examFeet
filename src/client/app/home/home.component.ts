@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-
-/**
- * This class represents the lazy loaded HomeComponent.
- */
 @Component({
   moduleId: module.id,
   selector: 'sd-home',
@@ -26,7 +22,4 @@ export class HomeComponent implements OnInit {
   getNames() {
     
   }
-
- 
-
 }

@@ -1,14 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-// import { Router } from '@angular/router';
-// import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-// import { ExamService } from '../services/examService';
 
 @Component({
     moduleId: module.id,
     selector: 'sd-questions',
     templateUrl: 'questions.component.html',
-    styleUrls: ['questions.component.css'] //,
-    //providers: [ExamService]
+    styleUrls: ['questions.component.css']
 })
 
 export class QuestionsComponent implements OnInit {
