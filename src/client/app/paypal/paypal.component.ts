@@ -1,21 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SharedService } from '../shared/sharedService';
-import {HttpService} from '../services/httpService';
+import { HttpService } from '../services/httpService';
 import { Http, Headers } from '@angular/http';
 
 @Component({
   moduleId: module.id,
   selector: 'paypal-comp',
   templateUrl: 'paypal.component.html',
-  styleUrls: ['paypal.component.css']
+  styleUrls: ['paypal.component.css'],
+  providers: [SharedService, HttpService]
 })
 
 export class PaypalComponent implements OnInit {
+
   title = 'PayPal Test';
   amount:any;
-  constructor(private route: ActivatedRoute,private sharedService:SharedService,private httpService:HttpService,private http:Http){
+
+  constructor(private route: ActivatedRoute,
+  private sharedService: SharedService,
+  private httpService: HttpService,
+  private http: Http){
       
   }
   

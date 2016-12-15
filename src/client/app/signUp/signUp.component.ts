@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { SignUpService } from '../services/signUpService';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import {ValidationService} from '../services/validationService';
+import { ValidationService } from '../services/validationService';
 import { SharedService } from '../shared/sharedService';
-import {Country } from '../models/country';
+import { Country } from '../models/country';
 //import * as _ from 'underscore';
 /**
  * This class represents the lazy loaded AboutComponent.
