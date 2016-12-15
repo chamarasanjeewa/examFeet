@@ -25,8 +25,8 @@ export const HomeRoutes: Routes = [
           },
           {
             path: 'paypal',
-            loadChildren: 'app/paypal/paypal.module#PaypalModule',
-            canActivate: [CanActivateViaAuthGuard]
+            loadChildren: 'app/paypal/paypal.module#PaypalModule'//,
+          //  canActivate: [CanActivateViaAuthGuard]
           }
       ]
   }

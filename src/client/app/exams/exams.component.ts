@@ -31,11 +31,11 @@ export class ExamsComponent implements OnInit {
 
         this.searchOptions = new SearchOptions();
         this.examService.getCountries().subscribe(res => {
-            debugger;
+            
             this.countries = res.countryList;
         });
         this.examService.getFaculties().subscribe(res => {
-            debugger;
+          
             this.faculties = res;
         });
     }
@@ -68,13 +68,13 @@ export class ExamsComponent implements OnInit {
     }
 
     loadFacultySpecializations(faculty: any) {
-        debugger;
+       
         this.examService.getFacultySpecializations(faculty.facultyId)
             .subscribe(res => { this.facultySpecializations = res.data; });
     }
 
     searchExams() {
-        debugger;
+        
         Object.assign(this.searchOptions, this.searchForm.value);
         this.examService.getExams(this.searchOptions.toParams()).subscribe(res => { this.exams = res; });
     }
@@ -111,7 +111,7 @@ export class ExamsComponent implements OnInit {
 
 
     ngOnInit() {
-        debugger;
+       
                 console.log(' exams ..')
         this.buildSearchForm();
     }

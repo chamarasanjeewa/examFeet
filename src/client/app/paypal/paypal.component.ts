@@ -12,7 +12,7 @@ import { Http, Headers } from '@angular/http';
   styleUrls: ['paypal.component.css']
 })
 
-export class PaypalComponent {
+export class PaypalComponent implements OnInit {
   title = 'PayPal Test';
   amount:any;
   constructor(private route: ActivatedRoute,private sharedService:SharedService,private httpService:HttpService,private http:Http){
@@ -20,7 +20,7 @@ export class PaypalComponent {
   }
   
    ngOnInit() {
-  
+  debugger;
     this.amount= this.sharedService.examPriceInfo;
          this.sharedService.examPriceInfo=null;
           

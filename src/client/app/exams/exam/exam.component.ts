@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ExamService } from '../../services/examService';
-
+import { SharedService } from '../../shared/sharedService';
 @Component({
     moduleId: module.id,
     selector: 'sd-exam',
@@ -33,7 +33,7 @@ export class ExamComponent implements OnInit {
     constructor(public fb: FormBuilder,
         private route: ActivatedRoute,
         public router: Router,
-        public examService: ExamService) {
+        public examService: ExamService,public sharedService:SharedService) {
 
         console.log('controller - exam ..')
 
@@ -45,8 +45,9 @@ export class ExamComponent implements OnInit {
     }
 
     purchaseSubsciption() {
-        // this.sharedService.examPriceInfo=this.examSubscriptionPrice;
-        this.router.navigate(['/mcq/paypal']);
+        debugger;
+        this.sharedService.examPriceInfo=400;//this.subscriptionCost;
+        this.router.navigate(['/paypal']);
     }
     
     ngOnInit() {

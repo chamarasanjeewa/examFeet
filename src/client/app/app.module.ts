@@ -19,7 +19,7 @@ import { HomeModule } from './home/home.module';
 // import { McqPurchaseModule } from './mcqPurchase/mcqPurchase.module';
 // import { McqResultModule } from './mcqResult/mcqResult.module';
 // import { ExamSubscriptionsModule } from './examSubscriptions/examSubscriptions.module';
-// import { PaypalModule } from './paypal/Paypal.module'
+ //import { PaypalModule } from './paypal/Paypal.module'
 // import { DashBoardModule } from './dashBoard/DashBoard.module'
 //import { ExamModule } from './exam/exam.module';
 // import {ExamStartModule } from './examStart/examStart.module';
