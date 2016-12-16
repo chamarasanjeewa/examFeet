@@ -6,18 +6,18 @@
     <input type="text" class="form-control" formControlName="searchText" placeholder="search text">
 
     <label>Country</label>
-    <select formControlName="country" *ngIf="!!countries.length">
-      <option *ngFor="let opt of countries" [ngValue]="opt">{{opt.name}}</option>
+    <select formControlName="country" *ngIf="countries.length">
+      <option *ngFor="let opt of countries"  [ngValue]="opt" >{{opt.name}}</option>
     </select>
 
     <label>Faculty</label>
-    <select formControlName="faculty" (ngModelChange)="loadFacultySpecializations($event)" *ngIf="!!faculties.length">
-      <option *ngFor="let opt of faculties" [ngValue]="opt">{{opt.facultyName}}</option>
+    <select formControlName="faculty" (ngModelChange)="loadFacultySpecializations($event)" *ngIf="faculties.length">
+      <option *ngFor="let opt of faculties" [selected]="faculties[0]" [ngValue]="opt">{{opt.facultyName}}</option>
     </select>
 
     <label>Specialization</label>
-    <select formControlName="speciality" *ngIf="!!faculties && !!facultySpecializations.length">
-      <option *ngFor="let opt of facultySpecializations"  [ngValue]="opt">{{opt.name}}</option>
+    <select formControlName="speciality" *ngIf="facultySpecializations && facultySpecializations.length">
+      <option *ngFor="let opt of facultySpecializations" [selected]="facultySpecializations[0]" [ngValue]="opt">{{opt.name}}</option>
     </select>
 
     <button type="submit" class="btn btn-default" [disabled]="!searchForm.valid">Search</button>

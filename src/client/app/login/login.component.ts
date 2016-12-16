@@ -17,7 +17,7 @@ import { SharedService } from '../shared/sharedService';
 
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
-
+    loginError:string;
     constructor(public fb: FormBuilder,
         public router: Router,
         public http: Http,
@@ -50,11 +50,15 @@ export class LoginComponent implements OnInit {
         let formData = this.loginForm.value;
         this.loginService.authenticateUser(formData)
             .subscribe(res => {
-                debugger;
+                if(res.statusCode==-1){
+                   this.loginError=res.statusMessage;
+                }else{
                 localStorage.setItem('userInfo', JSON.stringify(res))
-
                 console.log(res);
-                this.router.navigate(['/']);
+                this.router.navigate(['/dashBoard']);
+                }
+                debugger;
+               
             },
             err => {
 

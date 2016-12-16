@@ -3,7 +3,7 @@ import { ExamSubscriptionsComponent } from './index';
 
 export const ExamSubscriptionsRoutes: Route[] = [
   {
-    path: 'chooseMcq',
+    path: '',
     component: ExamSubscriptionsComponent
   }
 ];

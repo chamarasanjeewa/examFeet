@@ -24,6 +24,11 @@ export const HomeRoutes: Routes = [
             loadChildren: 'app/exams/exams.module#ExamsModule',
             canActivate: [CanActivateViaAuthGuard]
           },
+           {
+            path: 'subscriptions',
+            loadChildren: 'app/examSubscriptions/examSubscriptions.module#ExamSubscriptionsModule',
+            canActivate: [CanActivateViaAuthGuard]
+          },
           {
             path: 'paypal',
             loadChildren: 'app/paypal/paypal.module#PaypalModule'//,

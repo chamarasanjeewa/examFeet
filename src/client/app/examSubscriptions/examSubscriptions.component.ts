@@ -20,7 +20,7 @@ export class ExamSubscriptionsComponent implements OnInit {
     examList:any;
     constructor(public fb: FormBuilder, public mcqService: McqService, private route: ActivatedRoute,private router:Router,public sharedService:SharedService) {
 
-this.getSubscriptionsList();
+      this.getSubscriptionsList();
     }
     
  getSubscriptionsList(){
