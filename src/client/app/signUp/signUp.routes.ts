@@ -1,9 +1,6 @@
-import { Route } from '@angular/router';
+import { Routes } from '@angular/router';
 import { SignUpComponent } from './index';
 
-export const SignUpRoutes: Route[] = [
-  {
-    path: 'signUp',
-    component: SignUpComponent
-  }
+export const SignUpRoutes: Routes = [
+  { path: '', pathMatch: 'full', component: SignUpComponent }
 ];
