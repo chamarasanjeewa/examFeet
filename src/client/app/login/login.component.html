@@ -3,7 +3,7 @@
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="form-group">
       <label for="username">Username</label>
-      <input formControlName="userName" id="email" />
+      <input formControlName="userName" placeholder="username" id="email" />
 
       <control-messages [control]="loginForm.controls.userName"></control-messages>
 
@@ -13,13 +13,10 @@
       <label for="password">Password</label>
       <input type="password" class="form-control" formControlName="password" placeholder="password">
       <control-messages [control]="loginForm.controls.password"></control-messages>
-      <!--<small *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched ">
-        Password is required.
-    </small>
-    <small *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].hasError('minlength')">
-       minimum 5 characters needed.
-    </small>-->
 
+      <small *ngIf="loginError">
+       {{loginError}}
+    </small>
 
     </div>
     <button type="submit" class="btn btn-default" [disabled]="!loginForm.valid">Log in</button>

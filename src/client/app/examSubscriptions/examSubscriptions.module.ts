@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ExamSubscriptionsComponent } from './examSubscriptions.component';
+import { RouterModule } from '@angular/router';
+//import { ExamSubscriptionsComponent } from './examSubscriptions.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { ExamSubscriptionsComponent, ExamSubscriptionsRoutes } from './index';
 @NgModule({
-    imports: [CommonModule,ReactiveFormsModule],
+    imports: [CommonModule,ReactiveFormsModule,RouterModule.forChild(ExamSubscriptionsRoutes)],
     declarations: [ExamSubscriptionsComponent],
     exports: [ExamSubscriptionsComponent]
 })

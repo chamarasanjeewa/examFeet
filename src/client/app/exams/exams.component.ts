@@ -19,7 +19,9 @@ export class ExamsComponent implements OnInit {
     facultySpecializations: any = [];
     exams: any = [];
     searchOptions: SearchOptions;
-
+    selectedCountry: any;
+    selectedFaculty: any;
+    // selectedSpecialization: any;
     // form groups
     searchForm: FormGroup;
 
@@ -31,13 +33,23 @@ export class ExamsComponent implements OnInit {
 
         this.searchOptions = new SearchOptions();
         this.examService.getCountries().subscribe(res => {
-            
+
             this.countries = res.countryList;
+            (<FormControl>this.searchForm.controls['country'])
+                .setValue(this.countries[0], { onlySelf: true });
         });
         this.examService.getFaculties().subscribe(res => {
-          
+
             this.faculties = res;
+            this.selectedFaculty = this.faculties[0];
+            (<FormControl>this.searchForm.controls['faculty'])
+                .setValue(this.faculties[0], { onlySelf: true });
+               
+                 this.loadFacultySpecializations(this.faculties[0])
         });
+
+      
+
     }
 
 
@@ -68,51 +80,34 @@ export class ExamsComponent implements OnInit {
     }
 
     loadFacultySpecializations(faculty: any) {
-       
+
         this.examService.getFacultySpecializations(faculty.facultyId)
-            .subscribe(res => { this.facultySpecializations = res.data; });
+            .subscribe(res => {
+                this.facultySpecializations = res.data;
+                (<FormControl>this.searchForm.controls['speciality'])
+                    .setValue(this.facultySpecializations[0], { onlySelf: true });
+            });
+
     }
 
     searchExams() {
-        
+        debugger;
         Object.assign(this.searchOptions, this.searchForm.value);
-        this.examService.getExams(this.searchOptions.toParams()).subscribe(res => { this.exams = res; });
+        this.examService.getExams(this.searchOptions.toParams()).subscribe(res => { 
+            debugger; 
+            this.exams = res; });
     }
 
     selectExam(exam: any) {
         sessionStorage.setItem('exam', JSON.stringify(exam));
         this.router.navigateByUrl('/exams/' + exam.serviceId);
 
-
-        // debugger;
-        // console.log(exam);
-        // var params = {
-        //     'serviceId': exam.serviceId //28
-        // }
-
-        // this.examService.getExamInfo(params).subscribe(res => {
-        //     console.log('getExamInfo');
-        //     console.log(res);
-        // });
-
-        // this.examService.getSampleExamQuestions(params).subscribe(res => {
-        //     console.log('getSampleExamQuestions');
-        //     console.log(res);
-        // });
-
-
-
-        //this.router.navigate(['/mcq/', selectedExam.serviceId]);
-        // this.router.navigate(['/mcq/mcqPurchase',selectedExam.serviceId]);
-
-
-
     }
 
 
     ngOnInit() {
-       
-                console.log(' exams ..')
+
+        console.log(' exams ..')
         this.buildSearchForm();
     }
 
