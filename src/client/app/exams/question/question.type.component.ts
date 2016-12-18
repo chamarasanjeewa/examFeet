@@ -15,34 +15,32 @@ import { QuestionAnswerComponent } from './index';
 export class QuestionTypeComponent extends QuestionAnswerComponent implements OnInit {
 
     @Input() question: any;
-    form: FormGroup;
 
     constructor(public fb: FormBuilder) {
         super();
-        debugger;
     }
 
 
-    private buildForm() {
+    protected buildForm() {
         this.form = this.fb.group({});
         this.form.addControl('answer', new FormControl(''));
     }
 
     public getAnswer(): Observable<any> {
-        debugger;
         return (new Observable<any>((observer: any) => {
-            debugger;
             if (!this.form.valid) { observer.error('form is not valid'); }
             else {
-                observer.next(this.form.value);
+                debugger;
+                let userAnswer: any = this.form.value;
+                let result = (!!userAnswer && !!userAnswer.answer && !!userAnswer.answer.trim().length);
+                debugger;
+                observer.next(result);
                 observer.complete();
             }
         }));
     }
 
     ngOnInit() {
-        debugger;
         this.buildForm();
     }
-
 }

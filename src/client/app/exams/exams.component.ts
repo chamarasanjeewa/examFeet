@@ -91,10 +91,10 @@ export class ExamsComponent implements OnInit {
     }
 
     searchExams() {
-        debugger;
+
         Object.assign(this.searchOptions, this.searchForm.value);
         this.examService.getExams(this.searchOptions.toParams()).subscribe(res => { 
-            debugger; 
+ 
             this.exams = res; });
     }
 

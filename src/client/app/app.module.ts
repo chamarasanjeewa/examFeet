@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
+
 import { AppComponent } from './app.component';
 //import { routes } from './app.routes';
 import { HomeRoutes } from './home/index';
@@ -19,7 +20,7 @@ import { HomeModule } from './home/home.module';
 // import { McqPurchaseModule } from './mcqPurchase/mcqPurchase.module';
 // import { McqResultModule } from './mcqResult/mcqResult.module';
 // import { ExamSubscriptionsModule } from './examSubscriptions/examSubscriptions.module';
- //import { PaypalModule } from './paypal/Paypal.module'
+//import { PaypalModule } from './paypal/Paypal.module'
 // import { DashBoardModule } from './dashBoard/DashBoard.module'
 //import { ExamModule } from './exam/exam.module';
 // import {ExamStartModule } from './examStart/examStart.module';
@@ -30,7 +31,7 @@ import { HomeModule } from './home/home.module';
   imports: [BrowserModule,
     HttpModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(HomeRoutes), 
+    RouterModule.forRoot(HomeRoutes),
     // PaypalModule,
     // DashBoardModule,
     // McqPurchaseModule,
@@ -40,13 +41,13 @@ import { HomeModule } from './home/home.module';
     // McqModule, 
     // QuestionModule, 
     // AboutModule, 
-    HomeModule, 
+    HomeModule,
     // LoginModule, 
     // SignUpModule,
     // ExamStartModule,
     SharedModule.forRoot()
     //ExamModule,
-    ],
+  ],
   declarations: [AppComponent],
   providers: [{
     provide: APP_BASE_HREF,

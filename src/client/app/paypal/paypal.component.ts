@@ -26,7 +26,7 @@ export class PaypalComponent implements OnInit {
   }
   
    ngOnInit() {
-  debugger;
+
     this.amount= this.sharedService.examPriceInfo;
          this.sharedService.examPriceInfo=null;
           

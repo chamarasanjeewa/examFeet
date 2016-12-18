@@ -26,7 +26,7 @@ export class CountDownTimer {
     }
 
     constructor(countDownDuration: number) {
-        debugger;
+
         this._intervalTimerInterval = 500;
         this._elapsedDuration = 0;
         this._countDownDuration = countDownDuration;
@@ -36,7 +36,7 @@ export class CountDownTimer {
     private updateTimerProperties() {
         this._elapsedDuration += this._intervalTimerInterval;
         if (this._elapsedDuration >= this.countDownDuration) {
-            debugger;
+
             this.stop();
             this._onElapsed.trigger(new Date());
         }

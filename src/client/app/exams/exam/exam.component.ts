@@ -45,19 +45,15 @@ export class ExamComponent implements OnInit {
     }
 
     purchaseSubsciption() {
-        debugger;
         this.sharedService.examPriceInfo=400;//this.subscriptionCost;
         this.router.navigate(['/paypal']);
     }
     
     ngOnInit() {
         console.log('exam');
-        debugger;
         this.route.params
             .switchMap((params: Params) => {
-                debugger;
                 if (!this.exam || !this.exam.serviceId || !this.exam.serviceId || this.exam.serviceId != +params['id']) {
-                    debugger;
                     this.router.navigateByUrl('/exams');
                     return Observable.throw('exam mismatch ...');
                 }

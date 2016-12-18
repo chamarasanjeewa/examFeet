@@ -1,29 +1,27 @@
 import { Observable, Observer } from 'rxjs/Rx';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { QuestionAnswerComponent } from './index';
+import { QuestionAnswerComponent, TRUE_FALSE_QUESTION_ANSWER_TYPE } from './index';
 
 @Component({
     moduleId: module.id,
     selector: 'sd-question-truefalse',
     templateUrl: 'question.truefalse.component.html',
     styleUrls: ['question.truefalse.component.css'],
-    providers: [{provide: QuestionAnswerComponent, useExisting: QuestionTrueFalseComponent}]
+    providers: [{ provide: QuestionAnswerComponent, useExisting: QuestionTrueFalseComponent }]
 })
 
 export class QuestionTrueFalseComponent extends QuestionAnswerComponent implements OnInit {
 
     @Input() question: any;
-    form: FormGroup;
 
-     constructor(public fb: FormBuilder) {
+    constructor(public fb: FormBuilder) {
         super();
-        debugger;
+
     }
 
+    protected buildForm() {
 
-    private buildForm() {
-        debugger;
         this.form = this.fb.group({});
 
         for (let idx in this.question.answers) {
@@ -31,23 +29,28 @@ export class QuestionTrueFalseComponent extends QuestionAnswerComponent implemen
         }
     }
 
-
     public getAnswer(): Observable<any> {
-        debugger;
-       return (new Observable<any>((observer: any) => {
+
+        return (new Observable<any>((observer: any) => {
             if (!this.form.valid) { observer.error('form is not valid'); }
             else {
-                observer.next(this.form.value);
+                debugger;
+                let userAnswers: any[] = Object.values(this.form.value);
+                let result = this.question.answers
+                    .filter((elm: any, idx: number) => {
+                        return (!!userAnswers[idx] && elm.type === TRUE_FALSE_QUESTION_ANSWER_TYPE.TRUE)
+                            || (!userAnswers[idx] && elm.type === TRUE_FALSE_QUESTION_ANSWER_TYPE.FALSE);
+                    })
+                    .length === this.question.answers.length;
+                debugger;
+                observer.next(result);
                 observer.complete();
             }
         }));
     }
 
     ngOnInit() {
-        debugger;
+
         this.buildForm();
     }
-
-
-
 }

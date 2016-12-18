@@ -20,13 +20,13 @@ export class TryComponent implements OnInit {
         private route: ActivatedRoute,
         public router: Router,
         public examService: ExamService) {
-        debugger;
+
         console.log("StartComponent: ExamTryComponent");
         this.exam = JSON.parse(sessionStorage.getItem('exam') || '{}');
     }
 
     ngOnInit() {
-        debugger;
+
         console.log("constructor: Tryomponent");
 
         if (!this.exam) {

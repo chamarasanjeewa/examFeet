@@ -32,23 +32,23 @@
 //     }
 
 //     hasNext() {
-//         debugger;
+//
 //         return !!this.questions && !!this.questions.length && this._currentQuestionNo < this.questions.length;
 //     }
 
 //     hasPrevious() {
-//         debugger;
+//
 //         return !!this.questions && !!this.questions.length && this._currentQuestionNo > 0;
 //     }
 
 //     goToNext() {
-//         debugger;
+//
 //         if (!this.hasNext()) { return; }
 //         this._currentQuestionNo++;
 //     }
 
 //     goToPrevious() {
-//         debugger;
+//
 //         if (!this.hasPrevious()) { return; }
 //         this._currentQuestionNo--;
 //     }

@@ -22,36 +22,57 @@ import { QuestionAnswerComponent, QuestionMcqComponent, QuestionTrueFalseCompone
 export class StartComponent implements OnInit {
 
     @ViewChildren(QuestionAnswerComponent) answerComponents: QueryList<QuestionAnswerComponent>;
+
+    private _exam: any;
+    private _user: any;
+    private _countDownTillPreviousQuestion: number;
+    countDownTimer: CountDownTimer;
+    itemsCarousel: ItemsCarousel;
+    QUESTION_TYPE: QuestionType;
+
+
     get answerComponent(): QuestionAnswerComponent {
         return this.answerComponents.first;
     }
+    get currentQuestion(): any {
+        return this.itemsCarousel.currentItem;
+    }
+    get currentQuestionNo(): number {
+        return this.itemsCarousel.currentItemNo;
+    }
+    get renamingDuration(): number {
+        return this.countDownTimer.renamingDuration;
+    }
+    get durationOnCurrentQuestion(): number {
 
-    QUESTION_TYPE: QuestionType;
-    exam: any;
-    user: any;
-    countDownTimer: CountDownTimer;
-    itemsCarousel: ItemsCarousel
+        return this._countDownTillPreviousQuestion - this.renamingDuration;
+    }
+
+
+
 
     constructor(public fb: FormBuilder,
         private route: ActivatedRoute,
         public router: Router,
         public examService: ExamService) {
 
-        debugger;
+
         this.QUESTION_TYPE = QUESTION_TYPE;
-        this.exam = JSON.parse(sessionStorage.getItem('exam') || '{}');
-        this.user = JSON.parse(localStorage.getItem('userInfo') || '{}');
-        this.countDownTimer = new CountDownTimer(0);
+        this._countDownTillPreviousQuestion = 0;
+        this._exam = JSON.parse(sessionStorage.getItem('exam') || '{}');
+        this._user = JSON.parse(localStorage.getItem('userInfo') || '{}');
+        this.countDownTimer = new CountDownTimer(this._countDownTillPreviousQuestion);
         this.itemsCarousel = new ItemsCarousel();
         this.countDownTimer.onElapsed.on((data) => {
             this.onCountDownTimerElapsed(data);
-        })
+        });
     }
 
     start() {
-        debugger;
-        this.itemsCarousel.items = this.exam.session.questionResponse;
-        this.countDownTimer.countDownDuration = 1000 * (+this.exam.session.duration);
+
+        this.itemsCarousel.items = this._exam.session.questionResponse;
+        this.countDownTimer.countDownDuration = 1000 * (+this._exam.session.duration);
+        this._countDownTillPreviousQuestion = this.countDownTimer.countDownDuration;
         this.countDownTimer.start();
     }
 
@@ -61,44 +82,61 @@ export class StartComponent implements OnInit {
     }
 
     onAnswerQuestion() {
-        debugger;
+
         this.countDownTimer.stop();
         this.answerComponent.getAnswer()
             .flatMap(res => {
-                debugger;
-                var requestData = res;
+
+
+                var requestData = {
+                    uniqueSessionIdentifier: this._exam.session.uniqueSessionIdentifier,
+                    email: this._user.email,
+                    serviceId: this._exam.id,
+                    questionId: this.currentQuestion.questionId,
+                    answer: res,
+                    currentAnsweringQuestion: this.currentQuestionNo,
+                    totalNumberOfQuestions: this.itemsCarousel.items.length,
+                    answerUpdateDto: {
+                        quectionType: this.currentQuestion.questionType,
+                        answer: res,
+                        answerIds: []
+                    },
+                    spendTimeOnQuection: this.durationOnCurrentQuestion
+                };
+
                 return this.examService.sendExamQuestionAnswer(requestData);
             })
             .subscribe(res => {
-                debugger;
+
                 if (!this.itemsCarousel.hasNext()) {
                     console.log(res);
                     return;
                 }
 
+                this._countDownTillPreviousQuestion = this.renamingDuration;
                 this.itemsCarousel.goToNext();
                 this.countDownTimer.start();
             },
             error => {
-                debugger;
+
                 this.countDownTimer.start();
             });
     }
 
 
     ngOnInit() {
-        debugger;
-        if (!this.exam) {
+
+        if (!this._exam) {
             this.router.navigateByUrl('/exams');
         }
 
         var requestData: any = {
-            email: this.user.email,
-            serviceId: this.exam.id,
-            subscriptionId: this.exam.subscription.userSubscriptionId
+            email: this._user.email,
+            serviceId: this._exam.id,
+            subscriptionId: this._exam.subscription.userSubscriptionId
         }
         this.examService.getSubscribedExamQuestions(requestData).subscribe(res => {
-            this.exam.session = res;
+            this._exam.session = res;
             this.start();
         });
     }

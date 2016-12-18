@@ -68,7 +68,7 @@ export class SignUpComponent implements OnInit {
 
 
   signup() {
-    debugger;
+
     // _.each([1, 2, 3], alert);
     let formData = this.signUpForm.value;
   }
@@ -80,7 +80,7 @@ export class SignUpComponent implements OnInit {
   //   signup(signUpModel:SignUpModel) {
   //       this.signUpService.registerUser(signUpModel)
   //      .subscribe(res => {
-  //                                    debugger;
+  //
   //                                  console.log(res)  ;
   //                                 }, 
   //                                 err => {
