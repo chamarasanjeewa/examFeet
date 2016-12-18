@@ -2,7 +2,7 @@ import { Observable } from 'rxjs/Rx';
 import { Component, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ExamService } from '../../../services/examService';
+import { ExamService } from '../../services/examService';
 
 @Component({
     moduleId: module.id,
@@ -12,7 +12,7 @@ import { ExamService } from '../../../services/examService';
     providers: [ExamService]
 })
 
-export class StartComponent implements OnInit {
+export class TryComponent implements OnInit {
     exam: any;
     @Output() questions: any[];
 
@@ -27,7 +27,7 @@ export class StartComponent implements OnInit {
 
     ngOnInit() {
         debugger;
-        console.log("constructor: StartComponent");
+        console.log("constructor: Tryomponent");
 
         if (!this.exam) {
             this.router.navigateByUrl('/exams');

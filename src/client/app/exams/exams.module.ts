@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ExamModule } from './exam/exam.module';
-import { StartModule } from './exam/start/start.module';
+import { StartModule } from './start/start.module';
 import { ExamsRoutes, ExamsComponent } from './index';
 
 

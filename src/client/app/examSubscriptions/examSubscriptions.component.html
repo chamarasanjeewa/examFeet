@@ -1,7 +1,14 @@
-<div *ngIf="examList!=undefined && examList.length>0">
-<div *ngFor="let exam of examList">
-    
-    <span>{{exam.serviceName}}</span>
-    
-</div>
+
+<div *ngIf="!!subscriptions">
+    <ul>
+        <li *ngFor="let subscription of subscriptions" (click)="selectSubscription(subscription)">
+            <div>     
+                <span>{{subscription.serviceName}}</span>
+            </div>
+            <div>     
+                <span>Completed: {{subscription.completedSessionsCount}}</span>
+                <span>Pending: {{subscription.notCompletedSessionsCount}}</span>
+            </div>       
+        </li>
+    </ul>
 </div>

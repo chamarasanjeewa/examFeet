@@ -53,6 +53,8 @@ export class LoginComponent implements OnInit {
                 if(res.statusCode==-1){
                    this.loginError=res.statusMessage;
                 }else{
+                    debugger;
+                    res.userId = +res.userId; 
                 localStorage.setItem('userInfo', JSON.stringify(res))
                 console.log(res);
                 this.router.navigate(['/dashBoard']);

@@ -1,4 +1,4 @@
-Question Component
+Question Content
 
 <video *ngIf="!!question.videoUrl" width="100%" height="auto" controls>
   <source [src]="question.videoUrl" type="video/mp4">
@@ -14,7 +14,3 @@ Question Component
 
 <p>{{question.content}}</p>
 
-<!--
-<div *ngIf="question.questionType === QUESTION_TYPE.MCQ">  
-  <input *ngFor="let item in question.answers"  type="radio" name="answer" [(ngModel)]="answer" [value]="item">
-</div>-->

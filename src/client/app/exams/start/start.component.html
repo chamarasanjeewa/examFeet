@@ -1,0 +1,32 @@
+<!--Start Compontent
+{{exam?.session?.questionResponse?.length}}
+<sd-questions *ngIf="!!exam?.session && !!exam.session.questionResponse.length" 
+              [questions]="exam.session.questionResponse"
+              questionChanged="onQuestionChanged($event)">
+</sd-questions>
+
+-->
+
+<h2>Questions #{{itemsCarousel.currentItemNo}}</h2>
+
+<div>{{countDownTimer.renamingDuration}}</div>
+
+<div *ngIf="!!itemsCarousel.currentItem">
+    <sd-question-content [question]="itemsCarousel.currentItem"></sd-question-content>
+
+    <div *ngIf="itemsCarousel.currentItem.questionType === QUESTION_TYPE.MCQ">
+        <sd-question-mcq [question]="itemsCarousel.currentItem" (submitForm)="onSubmitForm()"></sd-question-mcq>
+    </div>
+
+    <div *ngIf="itemsCarousel.currentItem.questionType === QUESTION_TYPE.TRUE_OR_FALSE">
+        <sd-question-truefalse [question]="itemsCarousel.currentItem"></sd-question-truefalse>
+    </div>
+
+    <div *ngIf="itemsCarousel.currentItem.questionType === QUESTION_TYPE.TYPE_ANSWER">
+        <sd-question-type [question]="itemsCarousel.currentItem"></sd-question-type>
+    </div>
+
+    <!--<button (click)="goToPrevious()">Prevoius</button>-->
+    <button (click)="onAnswerQuestion()">Next</button>
+
+</div>
