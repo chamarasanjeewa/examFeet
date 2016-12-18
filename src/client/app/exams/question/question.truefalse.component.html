@@ -1,7 +1,7 @@
 <form [formGroup]="form">
-        <input *ngFor="let answer of question.answers; let i = index; trackBy: trackByFn" 
-                type="checkbox" 
-                formControlName="answer[{{i}}]"
-                (change)="answer.selected = !answer.selected">
-
+  <ul>
+    <li *ngFor="let answer of question.answers; let i = index; trackBy: trackByFn">
+      <input type="checkbox"  formControlName="answer[{{i}}]" (change)="answer.selected = !answer.selected"> {{answer.content}}
+    </li>
+  </ul>
 </form>
