@@ -32,6 +32,11 @@ export const HomeRoutes: Routes = [
             canActivate: [CanActivateViaAuthGuard]
           },
           {
+            path: 'results',
+            loadChildren: 'app/examResult/examResult.module#ExamResultModule',
+            canActivate: [CanActivateViaAuthGuard]
+          },
+          {
             path: 'paypal',
             loadChildren: 'app/paypal/paypal.module#PaypalModule'//,
           //  canActivate: [CanActivateViaAuthGuard]

@@ -31,14 +31,14 @@ export class QuestionMcqComponent extends QuestionAnswerComponent implements OnI
         return (new Observable<any>((observer: any) => {
             if (!this.form.valid) { observer.error('form is not valid'); }
             else {
-                debugger;
+              
                 let userAnswer: any = this.form.value;
                 let result = this.question.answers
                     .filter((elm: any) => { return elm.content === userAnswer.answer; })
                     .filter((elm: any) => { return elm.type === MCQ_QUESTION_ANSWER_TYPE.CORRECT; })
                     .length > 0;
 
-                debugger;
+                
                 observer.next(result);
                 observer.complete();
             }

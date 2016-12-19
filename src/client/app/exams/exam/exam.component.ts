@@ -45,7 +45,7 @@ export class ExamComponent implements OnInit {
     }
 
     purchaseSubsciption() {
-        this.sharedService.examPriceInfo=400;//this.subscriptionCost;
+        this.sharedService.examPriceInfo=this.subscriptionCost;
         this.router.navigate(['/paypal']);
     }
     

@@ -110,6 +110,8 @@ export class StartComponent implements OnInit {
 
                 if (!this.itemsCarousel.hasNext()) {
                     console.log(res);
+                    debugger;
+                     this.router.navigateByUrl('/results');
                     return;
                 }
 
