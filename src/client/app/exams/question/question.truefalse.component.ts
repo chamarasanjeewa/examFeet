@@ -34,7 +34,7 @@ export class QuestionTrueFalseComponent extends QuestionAnswerComponent implemen
         return (new Observable<any>((observer: any) => {
             if (!this.form.valid) { observer.error('form is not valid'); }
             else {
-                debugger;
+             
                 let userAnswers: any[] = Object.values(this.form.value);
                 let result = this.question.answers
                     .filter((elm: any, idx: number) => {
@@ -42,7 +42,7 @@ export class QuestionTrueFalseComponent extends QuestionAnswerComponent implemen
                             || (!userAnswers[idx] && elm.type === TRUE_FALSE_QUESTION_ANSWER_TYPE.FALSE);
                     })
                     .length === this.question.answers.length;
-                debugger;
+               
                 observer.next(result);
                 observer.complete();
             }

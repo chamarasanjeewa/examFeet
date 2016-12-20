@@ -15,7 +15,7 @@ import { Http, Headers } from '@angular/http';
 
 export class PaypalComponent implements OnInit {
 
-  title = 'PayPal Test';
+  title = 'Paypal';
   amount:any;
 
   constructor(private route: ActivatedRoute,
@@ -26,16 +26,18 @@ export class PaypalComponent implements OnInit {
   }
   
    ngOnInit() {
-
-    this.amount= this.sharedService.examPriceInfo;
-         this.sharedService.examPriceInfo=null;
+       debugger;
+ // sessionStorage.getItem('examSubscriptionInfo', JSON.stringify({subscriptionCost:this.subscriptionCost,serviceId: this.exam.serviceId}));
+          var examSubscriptionInfo = JSON.parse(sessionStorage.getItem('examSubscriptionInfo'));
+      
+         this.amount= examSubscriptionInfo.subscriptionCost;
+        // this.sharedService.examPriceInfo=null;
           
            
     }
     
     postInfo(){
        
-           
             let headers=this.httpService.getHttpHeaders();
              headers.append('Content-Type', 'text/html; charset=utf-8');
            

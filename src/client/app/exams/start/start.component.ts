@@ -110,7 +110,10 @@ export class StartComponent implements OnInit {
 
                 if (!this.itemsCarousel.hasNext()) {
                     console.log(res);
-                    debugger;
+                   
+                     sessionStorage.setItem('results', JSON.stringify(res));
+                   
+                    // this.exam = JSON.parse(sessionStorage.getItem('exam') || '{}');
                      this.router.navigateByUrl('/results');
                     return;
                 }

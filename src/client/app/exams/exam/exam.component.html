@@ -14,10 +14,12 @@
     <div class="row content-padding exam-info">
         <div class="col col-100 ">
             <h3>Licence Period</h3>
-
-            <select (ngModelChange)="calculateSubscriptionCost($event)">
-                <option *ngFor="let opt of months">{{opt.value}}</option>
+            <select (ngModelChange)="calculateSubscriptionCost($event)" *ngIf="months.length">
+                <option *ngFor="let opt of months" [selected]="months[0]" [ngValue]="opt">{{opt.value}}</option>
             </select>
+            <!--<select (ngModelChange)="calculateSubscriptionCost($event)">
+                <option *ngFor="let opt of months">{{opt.value}}</option>
+            </select>-->
         </div>
     </div>
 

@@ -41,11 +41,14 @@ export class ExamComponent implements OnInit {
     }
 
     calculateSubscriptionCost(month: any) {
+        debugger;
             this.subscriptionCost = this.exam.price.price * month.id;//$stateParams.selectedExam.price* $scope.numberOfMonths;
     }
 
     purchaseSubsciption() {
-        this.sharedService.examPriceInfo=this.subscriptionCost;
+       // this.sharedService.examPriceInfo=this.subscriptionCost;
+          sessionStorage.setItem('examSubscriptionInfo', JSON.stringify({subscriptionCost:this.subscriptionCost,serviceId: this.exam.serviceId}));
+                   
         this.router.navigate(['/paypal']);
     }
     
