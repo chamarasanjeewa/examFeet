@@ -14,7 +14,7 @@
     <div class="row content-padding exam-info">
         <div class="col col-100 ">
             <h3>Licence Period</h3>
-            <select (ngModelChange)="calculateSubscriptionCost($event)" *ngIf="months.length">
+            <select  [(ngModel)]="selectedMonth"  (change)="calculateSubscriptionCost($event)" *ngIf="months.length">
                 <option *ngFor="let opt of months" [selected]="months[0]" [ngValue]="opt">{{opt.value}}</option>
             </select>
             <!--<select (ngModelChange)="calculateSubscriptionCost($event)">
@@ -25,6 +25,6 @@
 
     <div class="row content-padding">{{subscriptionCost}}</div>
     <div class="row content-padding ">
-        <button type="submit" class="button button-full exam-infobtn" (click)="purchaseSubsciption()">Purchase Now</button>
+        <button type="submit" class="button button-full exam-infobtn" [disabled]="subscriptionCost==undefined" (click)="purchaseSubsciption()">Purchase Now</button>
     </div>
 </div>

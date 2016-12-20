@@ -5,8 +5,9 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { FormsModule } from "@angular/forms";
 import { PaypalRoutes, PaypalComponent } from './index';
 
+
 @NgModule({
-    imports: [CommonModule, RouterModule.forChild(PaypalRoutes)],
+    imports: [CommonModule, RouterModule.forChild(PaypalRoutes),FormsModule],
     declarations: [PaypalComponent],
     exports: [PaypalComponent]
 })

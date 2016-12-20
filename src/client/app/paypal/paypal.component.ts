@@ -17,6 +17,8 @@ export class PaypalComponent implements OnInit {
 
   title = 'Paypal';
   amount:any;
+  returnUrl:any;
+  cancelUrl:any;
 
   constructor(private route: ActivatedRoute,
   private sharedService: SharedService,
@@ -32,8 +34,9 @@ export class PaypalComponent implements OnInit {
       
          this.amount= examSubscriptionInfo.subscriptionCost;
         // this.sharedService.examPriceInfo=null;
-          
-           
+          this.returnUrl=" http://localhost:5555/exams/"+examSubscriptionInfo.serviceId+"/start";
+          this.cancelUrl="http://localhost:5555/exams/"+examSubscriptionInfo.serviceId;
+       
     }
     
     postInfo(){

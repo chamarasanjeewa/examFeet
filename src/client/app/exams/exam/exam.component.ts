@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs/Rx';
 import { Component, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ExamService } from '../../services/examService';
@@ -29,19 +30,19 @@ export class ExamComponent implements OnInit {
         { id: 11, value: "11 Months" },
         { id: 12, value: "12 Months" }
     ];
-
+    selectedMonth:any;
     constructor(public fb: FormBuilder,
         private route: ActivatedRoute,
         public router: Router,
         public examService: ExamService,public sharedService:SharedService) {
 
         console.log('controller - exam ..')
-
         this.exam = JSON.parse(sessionStorage.getItem('exam') || '{}');
     }
 
     calculateSubscriptionCost(month: any) {
         debugger;
+       var month= this.selectedMonth;
             this.subscriptionCost = this.exam.price.price * month.id;//$stateParams.selectedExam.price* $scope.numberOfMonths;
     }
 
