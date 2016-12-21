@@ -16,6 +16,7 @@ import { SharedService } from '../../shared/sharedService';
 export class ExamComponent implements OnInit {
     exam: any;
     subscriptionCost : Number;
+    examInfo:any;
     months = [
         { id: 1, value: "1 Month" },
         { id: 2, value: "2 Months" },
@@ -41,9 +42,9 @@ export class ExamComponent implements OnInit {
     }
 
     calculateSubscriptionCost(month: any) {
-        debugger;
+      
        var month= this.selectedMonth;
-            this.subscriptionCost = this.exam.price.price * month.id;//$stateParams.selectedExam.price* $scope.numberOfMonths;
+            this.subscriptionCost = this.exam.price * month.id;//$stateParams.selectedExam.price* $scope.numberOfMonths;
     }
 
     purchaseSubsciption() {
@@ -54,21 +55,23 @@ export class ExamComponent implements OnInit {
     }
     
     ngOnInit() {
-        console.log('exam');
-        this.route.params
-            .switchMap((params: Params) => {
-                if (!this.exam || !this.exam.serviceId || !this.exam.serviceId || this.exam.serviceId != +params['id']) {
-                    this.router.navigateByUrl('/exams');
-                    return Observable.throw('exam mismatch ...');
-                }
+        this.selectedMonth=this.months[0];
+       this.calculateSubscriptionCost( this.selectedMonth);
+       
+    //     this.route.params
+    //         .switchMap((params: Params) => {
+    //             if (!this.exam || !this.exam.serviceId || !this.exam.serviceId || this.exam.serviceId != +params['id']) {
+    //                 this.router.navigateByUrl('/exams');
+    //                 return Observable.throw('exam mismatch ...');
+    //             }
 
-                return this.examService.getExamInfo({ serviceId: this.exam.serviceId });
-            })
-            .subscribe(res => {
-                console.log(res);
-                Object.assign(this.exam, res);
-            }, error => {
-                console.log(error);
-            });
-    }
+    //             return this.examService.getExamInfo({ serviceId: this.exam.serviceId });
+    //         })
+    //         .subscribe(res => {
+    //             console.log(res);
+    //             Object.assign(this.examInfo, res);
+    //         }, error => {
+    //             console.log(error);
+    //         });
+    // }
 }
