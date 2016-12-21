@@ -41,9 +41,10 @@ export class ValidationService {
     }
 
     static areEqual(group: any) {
+       
         var valid: boolean = false;
-        if (group.controls != undefined && group.controls.length > 1) {
-            if (group.controls[0].value == group.controls[1].value) {
+        if (group.controls != undefined ) {
+            if (group.controls.confirmPassword.value==group.controls.password.value) {//TODO make it generic
                 valid = true;
             }
         }

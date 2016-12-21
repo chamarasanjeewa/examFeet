@@ -2,16 +2,17 @@ import { Http,Response,Headers,RequestOptions  } from '@angular/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import {SignUpModel} from '../models/SignUpModel';
+import {HttpService} from './httpService';
+
 
 @Injectable()
 export class SignUpService{
     
-    constructor(public http:Http){
+    constructor(public http:Http,public httpService:HttpService){
         
     }
     
   public  registerUser(signUpModel:SignUpModel){
-         let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         let options       = new RequestOptions({ headers: headers }); // Create a request option
 
          let registration = {
@@ -29,12 +30,22 @@ export class SignUpService{
         "address": "",//TODO
         "country": ""//TODO
       }
-      var registrationJson = JSON.stringify(registration);
       
-        
-        return this.http.post('http://52.77.81.10:9000/api/consumer/account/singup', registrationJson, options) // ...using post request
-                         .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
-                        // .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+        let url='consumer/account/singup';
+           var registrationJson = JSON.stringify(registration);
+             let headers=this.httpService.getHttpHeaders();
+             headers.append("Content-Type", 'application/json');
+            var params: Object = {
+            url: url,
+            headers: headers,
+            body:registrationJson
+        };
+
+        return this.httpService.httpPostRequestObservable(params);
+           
+        // return this.http.post('http://52.77.81.10:9000/api/consumer/account/singup', registrationJson, options) // ...using post request
+        //                  .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
+        //                 // .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
  
         
     }

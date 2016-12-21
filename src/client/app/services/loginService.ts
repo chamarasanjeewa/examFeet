@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import {LoginModel} from '../models/LoginModel';
 import {HttpService} from './httpService';
-
+public httpService:HttpService
 @Injectable()
 export class LoginService{
     

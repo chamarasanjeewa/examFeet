@@ -19,6 +19,7 @@ import { Country } from '../models/country';
 })
 export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
+  signUpError:string;
    countries = [
      new Country(1, 'USA' ),
      new Country(2, 'India' ),
@@ -67,25 +68,30 @@ export class SignUpComponent implements OnInit {
   }
 
 
-  signup() {
 
-    // _.each([1, 2, 3], alert);
-    let formData = this.signUpForm.value;
-  }
 
-  passwordMatchValidator(g: FormGroup) {
-    return g.get('password').value === g.get('confirmPassword').value
-      ? null : { 'mismatch': true };
-  }
-  //   signup(signUpModel:SignUpModel) {
-  //       this.signUpService.registerUser(signUpModel)
-  //      .subscribe(res => {
-  //
-  //                                  console.log(res)  ;
-  //                                 }, 
-  //                                 err => {
+ 
+    signup() {
+          let formData = this.signUpForm.value;
+        this.signUpService.registerUser(formData)
+       .subscribe(res => {
+  debugger;
+  
+                if(res.statusCode==-1){
+                   this.signUpError=res.statusMessage;
+                }else{
 
-  //                                     console.log(err);
-  //                                 });
-  //   }
+                //     res.userId = +res.userId; 
+                // localStorage.setItem('userInfo', JSON.stringify(res))
+                // console.log(res);
+                this.router.navigate(['/login']);
+                }
+
+                                   console.log(res)  ;
+                                  }, 
+                                  err => {
+
+                                      console.log(err);
+                                  });
+    }
 }

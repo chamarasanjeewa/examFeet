@@ -14,7 +14,7 @@ export const HomeRoutes: Routes = [
           { path: '', redirectTo: 'about', pathMatch: 'full' },
           { path: 'about',   loadChildren: 'app/about/about.module#AboutModule'},
           { path: 'login',   loadChildren: 'app/login/login.module#LoginModule'},
-          { path: 'signUp',   loadChildren: 'app/signUp/losignUpgin.module#SignUpModule'},
+          { path: 'signUp',   loadChildren: 'app/signUp/signUp.module#SignUpModule'},
           
           // { path: 'mySubscriptions',  
           //   component: ExamSubscriptionsComponent, 
