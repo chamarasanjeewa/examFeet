@@ -13,7 +13,7 @@ export class SignUpService{
     }
     
   public  registerUser(signUpModel:SignUpModel){
-        let options       = new RequestOptions({ headers: headers }); // Create a request option
+      //  let options       = new RequestOptions({ headers: headers }); // Create a request option
 
          let registration = {
        // "companyName": registerData.companyName,
@@ -42,11 +42,7 @@ export class SignUpService{
         };
 
         return this.httpService.httpPostRequestObservable(params);
-           
-        // return this.http.post('http://52.77.81.10:9000/api/consumer/account/singup', registrationJson, options) // ...using post request
-        //                  .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
-        //                 // .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
- 
+        
         
     }
     
