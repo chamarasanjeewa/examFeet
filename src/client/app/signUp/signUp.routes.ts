@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
-import { SignUpComponent } from './index';
+
+import { SignUpComponent,SignUpSuccessComponent } from './index';
 
 export const SignUpRoutes: Routes = [
-  { path: '', pathMatch: 'full', component: SignUpComponent }
+  { path: 'signup',component: SignUpComponent  },
+   {path: 'signUpSuccess',   component: SignUpSuccessComponent}
 ];

@@ -285,7 +285,10 @@ export class SignUpComponent implements OnInit {
  
     signup() {
           let formData = this.signUpForm.value;
+           this.router.navigate(['/signUpSuccess']);
         this.signUpService.registerUser(formData)
+        
+        
        .subscribe(res => {
   debugger;
   

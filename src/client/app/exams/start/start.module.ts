@@ -4,12 +4,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { QuestionModule } from '../question/question.module';
 //import { PipeModule } from '../../core/pipes/pipe.module';
 import { DurationPipe } from '../../core/pipes/durationPipe';
-import { TryComponent, StartComponent } from './index';
+import { TryComponent, StartComponent,BeforeStartComponent  } from './index';
 
 @NgModule({
     imports: [CommonModule, ReactiveFormsModule, QuestionModule],
-    declarations: [TryComponent, StartComponent, DurationPipe],
-    exports: [TryComponent, StartComponent, DurationPipe]
+    declarations: [TryComponent, StartComponent, DurationPipe,BeforeStartComponent],
+    exports: [TryComponent, StartComponent, DurationPipe,BeforeStartComponent]
 })
 
 export class StartModule {}

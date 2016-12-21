@@ -28,13 +28,13 @@ export class PaypalComponent implements OnInit {
   }
   
    ngOnInit() {
-       debugger;
+     
  // sessionStorage.getItem('examSubscriptionInfo', JSON.stringify({subscriptionCost:this.subscriptionCost,serviceId: this.exam.serviceId}));
           var examSubscriptionInfo = JSON.parse(sessionStorage.getItem('examSubscriptionInfo'));
       
          this.amount= examSubscriptionInfo.subscriptionCost;
         // this.sharedService.examPriceInfo=null;
-          this.returnUrl=" http://localhost:5555/exams/"+examSubscriptionInfo.serviceId+"/start";
+          this.returnUrl=" http://localhost:5555/exams/"+examSubscriptionInfo.serviceId+"/beforeStart";
           this.cancelUrl="http://localhost:5555/exams/"+examSubscriptionInfo.serviceId;
        
     }
