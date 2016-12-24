@@ -11,8 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from './shared/shared.module';
 // import { AboutModule } from './about/about.module';
-// import { LoginModule } from './login/login.module';
-// import { SignUpModule } from './signUp/signUp.module';
+ import { LoginModule } from './login/login.module';
+ import { SignUpModule } from './signUp/signUp.module';
 // import { McqModule } from './mcq/mcq.module';
 import { HomeModule } from './home/home.module';
 //import { QuestionModule } from './question/question.module';
@@ -43,8 +43,8 @@ import { HomeModule } from './home/home.module';
     // QuestionModule, 
     // AboutModule, 
     HomeModule,
-    // LoginModule, 
-    // SignUpModule,
+    LoginModule, 
+     SignUpModule,
     // ExamStartModule,
     SharedModule.forRoot()
     //ExamModule,
