@@ -1,26 +1,34 @@
-<div class="login jumbotron center-block">
-  <h1>Login</h1>
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input formControlName="userName" placeholder="username" id="email" />
+<div class="container-fluid">
+  <div class="row">
 
-      <control-messages [control]="loginForm.controls.userName"></control-messages>
+    <div class="center-block login-box"  >
+      <div class="login jumbotron center-block">
+        <h1>Login</h1>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input formControlName="userName" placeholder="username" id="email" />
 
+            <control-messages [control]="loginForm.controls.userName"></control-messages>
+
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" formControlName="password" placeholder="password">
+            <control-messages [control]="loginForm.controls.password"></control-messages>
+
+            <small *ngIf="loginError">
+             {{loginError}}
+          </small>
+
+          </div>
+          <button type="submit" class="btn btn-default" [disabled]="!loginForm.valid">Log in</button>
+        </form>
+      </div>
+
+      <a href="" routerLink="/signup" routerLinkActive="active">SignUp</a>
     </div>
 
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" class="form-control" formControlName="password" placeholder="password">
-      <control-messages [control]="loginForm.controls.password"></control-messages>
-
-      <small *ngIf="loginError">
-       {{loginError}}
-    </small>
-
-    </div>
-    <button type="submit" class="btn btn-default" [disabled]="!loginForm.valid">Log in</button>
-  </form>
+  </div>
 </div>
-
-<a href="" routerLink="/signup" routerLinkActive="active">SignUp</a>
