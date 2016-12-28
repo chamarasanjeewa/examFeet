@@ -16,31 +16,66 @@
 
 
 import { Observable, Observer } from 'rxjs/Rx';
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ANSWER_TYPE, AnswerEvaluationType, ANSWER_EVALUATION_TYPE } from './index';
 
 @Component({
     moduleId: module.id,
     selector: 'sd-question'
 })
 
-export abstract class QuestionAnswerComponent implements OnChanges {
+export abstract class QuestionAnswerComponent implements OnChanges, AfterViewInit {
 
     protected form: FormGroup;
+    protected choices: any[];
+    protected explanation: any;
+    public ANSWER_EVALUATION_TYPE: AnswerEvaluationType;
+    public showAnswer: boolean;
+    //    public isSampleQuestion: boolean;
 
-    constructor() {
-
+    public abstract question: any;
+    protected abstract get value(): any;
+    protected get isSampleQuestion(): boolean {
+        return !!this.question && !!this.question.sampleQuestion;
     }
 
-    protected abstract buildForm(): void;
+    constructor() {
+        this.ANSWER_EVALUATION_TYPE = ANSWER_EVALUATION_TYPE;
+    }
+
     public abstract getAnswer(): Observable<any>;
+    protected abstract createForm(): FormGroup;
+    protected buildForm(): void {
+        this.form = this.createForm();
+        this.form.valueChanges.subscribe((values: any) => {
+            debugger;
+            this.evaluateChoicesAndShowAnswers();
+        });
+    }
+    protected abstract evaluateChoicesAndShowAnswers(): void;
+
+    protected isAnswerExplanation(answer: any): boolean {
+        return answer.type === ANSWER_TYPE.EXPLANATION;
+    }
+
     protected reset(): void {
-        if (this.form) { this.form.reset(); }
+        debugger;
+        this.choices = this.question.answers.filter((elm: any) => !this.isAnswerExplanation(elm));
+
+        var explanations = this.question.answers.filter((elm: any) => this.isAnswerExplanation(elm));
+        this.explanation = (!explanations || !explanations.length) ? null : explanations[0];
+        this.showAnswer = false;
         this.buildForm();
     }
 
-    ngOnChanges(changes: SimpleChanges) {
+    ngAfterViewInit(): void {
+        debugger;
 
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        debugger;
         this.reset();
     }
 }

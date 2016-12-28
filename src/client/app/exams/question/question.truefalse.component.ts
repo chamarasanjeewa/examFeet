@@ -1,7 +1,7 @@
 import { Observable, Observer } from 'rxjs/Rx';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { QuestionAnswerComponent, TRUE_FALSE_QUESTION_ANSWER_TYPE } from './index';
+import { QuestionAnswerComponent, ANSWER_TYPE, ANSWER_EVALUATION_TYPE } from './index';
 
 @Component({
     moduleId: module.id,
@@ -14,35 +14,52 @@ import { QuestionAnswerComponent, TRUE_FALSE_QUESTION_ANSWER_TYPE } from './inde
 export class QuestionTrueFalseComponent extends QuestionAnswerComponent implements OnInit {
 
     @Input() question: any;
+    protected evaluations: any[];
+    protected get value(): any {
+        return this.form.value;
+    }
 
     constructor(public fb: FormBuilder) {
         super();
+        debugger;
 
     }
 
-    protected buildForm() {
-
-        this.form = this.fb.group({});
-
-        for (let idx in this.question.answers) {
-            this.form.addControl('answer[' + idx + ']', new FormControl(false));
+    protected createForm(): FormGroup {
+        debugger;
+        var form = this.fb.group({});
+        for (let idx in this.choices) {
+            form.addControl('answer[' + idx + ']', new FormControl(false));
         }
+        return form;
     }
+
+    protected evaluateChoicesAndShowAnswers(): void {
+        debugger;
+
+        this.evaluations = this.choices.map((elm: any, idx: number) => {
+            var values = Object.values(this.value);
+            return (elm.type === ANSWER_TYPE.TRUE) ? ANSWER_EVALUATION_TYPE.CORRECT
+                : (elm.type === ANSWER_TYPE.FALSE && !!values[idx]) ? ANSWER_EVALUATION_TYPE.WRONG
+                    : ANSWER_EVALUATION_TYPE.NONE;
+        });
+    }
+
 
     public getAnswer(): Observable<any> {
+        debugger;
 
         return (new Observable<any>((observer: any) => {
             if (!this.form.valid) { observer.error('form is not valid'); }
             else {
-             
-                let userAnswers: any[] = Object.values(this.form.value);
-                let result = this.question.answers
+
+                let result = this.choices
                     .filter((elm: any, idx: number) => {
-                        return (!!userAnswers[idx] && elm.type === TRUE_FALSE_QUESTION_ANSWER_TYPE.TRUE)
-                            || (!userAnswers[idx] && elm.type === TRUE_FALSE_QUESTION_ANSWER_TYPE.FALSE);
+                        return (!!this.value[idx] && elm.type === ANSWER_TYPE.TRUE)
+                            || (!this.value[idx] && elm.type === ANSWER_TYPE.FALSE);
                     })
-                    .length === this.question.answers.length;
-               
+                    .length === this.choices.length;
+
                 observer.next(result);
                 observer.complete();
             }
@@ -50,6 +67,7 @@ export class QuestionTrueFalseComponent extends QuestionAnswerComponent implemen
     }
 
     ngOnInit() {
+        debugger;
 
         this.buildForm();
     }

@@ -10,3 +10,11 @@ h2 {
   margin-bottom: 0;
   margin-top: 0.83em;
 }
+
+.correct {
+  background-color: palegreen;
+}
+
+.wrong {
+  background-color: deeppink;
+}
