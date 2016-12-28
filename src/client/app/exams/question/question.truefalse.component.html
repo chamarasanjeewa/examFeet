@@ -1,8 +1,15 @@
 <form [formGroup]="form">
   <ul>
-    <li *ngFor="let answer of question.answers; let i = index; trackBy: trackByFn">
-      <input type="checkbox"  formControlName="answer[{{i}}]" /> {{answer.content}}
+    <li *ngFor="let choice of choices; let i = index; trackBy: trackByFn"
+        [ngClass]="{'correct': (showAnswer && evaluations[i] === ANSWER_EVALUATION_TYPE.CORRECT),
+          'wrong': (showAnswer && evaluations[i] === ANSWER_EVALUATION_TYPE.WRONG)}">
+      <input type="checkbox"  formControlName="answer[{{i}}]" /> {{choice.content}}
       <!--(change)="answer.selected = !answer.selected"-->
     </li>
   </ul>
 </form>
+
+<div *ngIf="isSampleQuestion">
+  <textarea *ngIf="showAnswer" rows="2" cols="auto">{{explanation?.content}}</textarea>
+  <button type="button" (click)="showAnswer = !showAnswer">{{!showAnswer ? "Show" : "Hide" }} Answer</button>
+</div>

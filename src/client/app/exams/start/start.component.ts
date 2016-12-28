@@ -6,7 +6,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ExamService } from '../../services/examService';
 import { ILiteEvent } from '../../utilities/ILiteEvent'
 import { LiteEvent } from '../../utilities/LiteEvent'
-import { CountDownTimer } from '../../utilities/CountDownTimer'
+import { CountDownTimer } from '../../utilities/countDownTimer'
 import { ItemsCarousel } from '../../utilities/ItemsCarousel'
 import { QuestionAnswerComponent, QuestionMcqComponent, QuestionTrueFalseComponent, QuestionTypeComponent, QuestionType, QUESTION_TYPE } from './index';
 
@@ -71,8 +71,8 @@ export class StartComponent implements OnInit {
     start() {
 
         this.itemsCarousel.items = this._exam.session.questionResponse;
-        this.countDownTimer.countDownDuration = 1000 * (+this._exam.session.duration);
-        this._countDownTillPreviousQuestion = this.countDownTimer.countDownDuration;
+        this.countDownTimer.triggerDuration = 1000 * (+this._exam.session.duration);
+        this._countDownTillPreviousQuestion = this.countDownTimer.triggerDuration;
         this.countDownTimer.start();
     }
 
@@ -86,7 +86,6 @@ export class StartComponent implements OnInit {
         this.countDownTimer.stop();
         this.answerComponent.getAnswer()
             .flatMap(res => {
-
 
                 var requestData = {
                     uniqueSessionIdentifier: this._exam.session.uniqueSessionIdentifier,
@@ -134,7 +133,7 @@ export class StartComponent implements OnInit {
         if (!this._exam) {
             this.router.navigateByUrl('/exams');
         }
-
+        debugger;
         var requestData: any = {
             email: this._user.email,
             serviceId: this._exam.id,

@@ -15,7 +15,7 @@
     <sd-question-content [question]="currentQuestion"></sd-question-content>
 
     <div *ngIf="currentQuestion.questionType === QUESTION_TYPE.MCQ">
-        <sd-question-mcq [question]="currentQuestion" (submitForm)="onSubmitForm()"></sd-question-mcq>
+        <sd-question-mcq [question]="currentQuestion"></sd-question-mcq>
     </div>
 
     <div *ngIf="currentQuestion.questionType === QUESTION_TYPE.TRUE_OR_FALSE">

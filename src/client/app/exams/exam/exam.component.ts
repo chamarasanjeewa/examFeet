@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ExamService } from '../../services/examService';
 import { SharedService } from '../../shared/sharedService';
+
 @Component({
     moduleId: module.id,
     selector: 'sd-exam',
@@ -57,7 +58,7 @@ export class ExamComponent implements OnInit {
     ngOnInit() {
         this.selectedMonth=this.months[0];
        this.calculateSubscriptionCost( this.selectedMonth);
-       
+    }
     //     this.route.params
     //         .switchMap((params: Params) => {
     //             if (!this.exam || !this.exam.serviceId || !this.exam.serviceId || this.exam.serviceId != +params['id']) {

@@ -1,40 +1,109 @@
 import { Observable } from 'rxjs/Rx';
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, QueryList } from '@angular/core';
+import { AfterViewInit, ViewChild, ViewChildren } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ExamService } from '../../services/examService';
+import { ILiteEvent } from '../../utilities/ILiteEvent'
+import { LiteEvent } from '../../utilities/LiteEvent'
+import { Timer } from '../../utilities/timer'
+import { ItemsCarousel } from '../../utilities/ItemsCarousel'
+import { QuestionAnswerComponent, QuestionMcqComponent, QuestionTrueFalseComponent, QuestionTypeComponent, QuestionType, QUESTION_TYPE } from './index';
+
 
 @Component({
     moduleId: module.id,
-    selector: 'sd-exam-start',
+    selector: 'sd-exam-try',
     templateUrl: 'start.component.html',
     styleUrls: ['start.component.css'],
     providers: [ExamService]
 })
 
 export class TryComponent implements OnInit {
-    exam: any;
-    @Output() questions: any[];
+
+    @ViewChildren(QuestionAnswerComponent) answerComponents: QueryList<QuestionAnswerComponent>;
+
+    protected exam: any;
+    protected user: any;
+    protected durationTillPreviousQuestion: number;
+    protected timer: Timer;
+    protected itemsCarousel: ItemsCarousel;
+    protected QUESTION_TYPE: QuestionType;
+    protected results: any;
+
+
+    get answerComponent(): QuestionAnswerComponent {
+        return this.answerComponents.first;
+    }
+    get currentQuestion(): any {
+        return this.itemsCarousel.currentItem;
+    }
+    get currentQuestionNo(): number {
+        return this.itemsCarousel.currentItemNo;
+    }
+    get elapsedDuration(): number {
+        return this.timer.elapsedDuration;
+    }
+    get durationOnCurrentQuestion(): number {
+        return this.elapsedDuration - this.durationTillPreviousQuestion;
+    }
+
 
     constructor(public fb: FormBuilder,
         private route: ActivatedRoute,
         public router: Router,
         public examService: ExamService) {
 
-        console.log("StartComponent: ExamTryComponent");
+        this.QUESTION_TYPE = QUESTION_TYPE;
+        this.durationTillPreviousQuestion = 0;
+        this.results = {};
         this.exam = JSON.parse(sessionStorage.getItem('exam') || '{}');
+        this.user = JSON.parse(localStorage.getItem('userInfo') || '{}');
+        this.timer = new Timer();
+        this.itemsCarousel = new ItemsCarousel();
     }
 
-    ngOnInit() {
+    public start(): void {
+        this.itemsCarousel.items = this.exam.trailQuestion;
+        this.durationTillPreviousQuestion = 0;
+        this.timer.start();
+    }
 
-        console.log("constructor: Tryomponent");
+    onAnswerQuestion() {
+        this.timer.stop();
+        this.answerComponent.getAnswer()
+            .subscribe(res => {
+                debugger;
+                this.results[this.currentQuestionNo] = res;
+
+                if (!this.itemsCarousel.hasNext()) {
+                    sessionStorage.setItem('results', JSON.stringify(this.results));
+                    this.router.navigateByUrl('/results');
+                    return;
+                }
+
+                this.durationTillPreviousQuestion = this.elapsedDuration;
+                this.itemsCarousel.goToNext();
+                this.timer.start();
+            },
+            error => {
+                this.timer.start();
+            });
+    }
+
+
+    ngOnInit() {
 
         if (!this.exam) {
             this.router.navigateByUrl('/exams');
         }
-
-        this.examService.getSampleExamQuestions({ serviceId: this.exam.serviceId }).subscribe(res => {
-            this.questions = res;
+        debugger;
+        var requestData: any = {
+            serviceId: this.exam.serviceId
+        }
+        this.examService.getSampleExamQuestions(requestData).subscribe(res => {
+            this.exam.trailQuestion = res;
+            this.start();
         });
     }
 }
