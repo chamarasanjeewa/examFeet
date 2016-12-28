@@ -1,15 +1,20 @@
-<h1>
-	sign up</h1>
+<div class="container-fluid">
+	<div class="row">
+		<div class="logo center-block">
+			<a href="#"><img src="../../../assets/images/logo.png" alt=""></a>
+		</div>
 
-<div class="login jumbotron center-block">
+		<div class="center-block login-box">
 
-	<form [formGroup]="signUpForm" novalidate (ngSubmit)="signup()">
-		<div class="form-group">
-			<label for="email">Email</label>
-			<input type="email" formControlName="email" class="form-control" id="email" placeholder="email">
-			<control-messages [control]="signUpForm.controls.email"></control-messages>
+			<form [formGroup]="signUpForm" novalidate (ngSubmit)="signup()">
+				<div class="form-group">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1"><i class="fa  fa-envelope-o"></i></span>
+						<input type="email" formControlName="email" class="form-control" id="email" placeholder="email">
 
-			<!--
+					</div>
+					<control-messages [control]="signUpForm.controls.email"></control-messages>
+					<!--
 			<small *ngIf="signUpForm.controls['email'].hasError('required') && signUpForm.controls['email'].touched ">
         Name is required .
     </small>
@@ -17,57 +22,71 @@
        not a valid email.
     </small>-->
 
-		</div>
+				</div>
 
 
-		<div formGroupName="passwords">
-			<label>password</label>
-			<input type="password" formControlName="password" placeholder="password">
-			<control-messages [control]="signUpForm.controls.passwords.controls.password"></control-messages>
+				<div formGroupName="passwords" class="form-group">
 
-			<!--<small *ngIf="signUpForm.controls.passwords.controls.password.touched &&!signUpForm.controls.passwords.controls.password.valid">
-                    Required 
-                    </small>-->
-		</div>
-		<div formGroupName="passwords">
-			<label>password</label>
-			<input type="password" formControlName="confirmPassword" placeholder="confirm password">
-			<control-messages [control]="signUpForm.controls.passwords.controls.confirmPassword"></control-messages>
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1"><i class="fa fa-lock"></i></span>
+						<input type="password" class="form-control" formControlName="password" placeholder="password">
 
-			<!--<small *ngIf="signUpForm.controls.passwords.controls.confirmPassword.touched &&!signUpForm.controls.passwords.controls.confirmPassword.required">
-                    Required 
-                    </small>-->
-			<control-messages [control]="signUpForm.controls.passwords"></control-messages>
+					</div>
+					<control-messages [control]="signUpForm.controls.passwords.controls.password"></control-messages>
 
-		</div>
+					<!--<small *ngIf="signUpForm.controls.passwords.controls.password.touched &&!signUpForm.controls.passwords.controls.password.valid">
+									Required
+									</small>-->
+				</div>
 
-		<div formGroupName="telephone">
-			<label>country code</label>
-			<!--<select formControlName="countryCode" (input)="onInput($event)">
+				<div formGroupName="passwords" class="form-group">
+
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1"><i class="fa fa-lock"></i></span>
+						<input type="password" class="form-control" formControlName="confirmPassword" placeholder="confirm password">
+
+					</div>
+					<control-messages [control]="signUpForm.controls.passwords.controls.confirmPassword"></control-messages>
+
+					<!--<small *ngIf="signUpForm.controls.passwords.controls.confirmPassword.touched &&!signUpForm.controls.passwords.controls.confirmPassword.required">
+					Required
+					</small>-->
+					<control-messages [control]="signUpForm.controls.passwords"></control-messages>
+				</div>
+
+				<div formGroupName="telephone" class="form-group">
+
+					<!--<select formControlName="countryCode" (input)="onInput($event)">
   <option *ngFor="country of countries" value= {{country.id}}>{{country.name}}</option>
 </select>-->
 
-			<select formControlName="countryCode" *ngIf="countries!=undefined && countries.length>0">
+					<select formControlName="countryCode" *ngIf="countries!=undefined && countries.length>0" >
       <option *ngFor="let country of countries"  [ngValue]="country">{{country.name}}</option>
     </select>
-			<!--<input type="text" formControlName="countryCode" placeholder="country code">-->
-			<!--<small *ngIf="signUpForm.controls.telephone.controls.countryCode.touched &&!signUpForm.controls.telephone.controls.countryCode.valid">
-                    Required 
+					<!--<input type="text" formControlName="countryCode" placeholder="country code">-->
+					<!--<small *ngIf="signUpForm.controls.telephone.controls.countryCode.touched &&!signUpForm.controls.telephone.controls.countryCode.valid">
+                    Required
                     </small>-->
+				</div>
+
+				<div formGroupName="telephone">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1"><i class="fa fa-phone"></i></span>
+						<input type="text" class="form-control" formControlName="telephoneNumber" placeholder="Telephone number">
+
+					</div>
+					<small *ngIf="signUpForm.controls.telephone.controls.telephoneNumber.touched &&!signUpForm.controls.telephone.controls.telephoneNumber.valid">
+														Required
+														</small>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-default btn-green" [disabled]="!signUpForm.valid">Sign up</button>
+				</div>
+				<a href="" routerLink="/login" routerLinkActive="active" class="btn btn-default btn-green">Login</a>
+			</form>
 		</div>
 
-		<div formGroupName="telephone">
-			<label>telephone number</label>
-			<input type="text" formControlName="telephoneNumber" placeholder="telephone number">
-			<small *ngIf="signUpForm.controls.telephone.controls.telephoneNumber.touched &&!signUpForm.controls.telephone.controls.telephoneNumber.valid">
-                    Required 
-                    </small>
-		</div>
+		<router-outlet></router-outlet>
 
-		<button type="submit" class="btn btn-default" [disabled]="!signUpForm.valid">Sign up</button>
-        
-<a href="" routerLink="/login" routerLinkActive="active">Login</a>
-	</form>
+	</div>
 </div>
-
-  <router-outlet></router-outlet>
