@@ -285,7 +285,7 @@ export class SignUpComponent implements OnInit {
  
     signup() {
           let formData = this.signUpForm.value;
-           this.router.navigate(['/signUpSuccess']);
+          
         this.signUpService.registerUser(formData)
         
         
@@ -295,11 +295,11 @@ export class SignUpComponent implements OnInit {
                 if(res.statusCode==-1){
                    this.signUpError=res.statusMessage;
                 }else{
-
+                       this.router.navigate(['/signUpSuccess']);
                 //     res.userId = +res.userId; 
                 // localStorage.setItem('userInfo', JSON.stringify(res))
                 // console.log(res);
-                this.router.navigate(['/login']);
+                //this.router.navigate(['/login']);
                 }
 
                                    console.log(res)  ;

@@ -5,5 +5,5 @@ export class SignUpModel{
     public password:string;
     public confirmPassword:string;
     public email:string;
-    public telephone:string;
+    public telephone:any;
 }
