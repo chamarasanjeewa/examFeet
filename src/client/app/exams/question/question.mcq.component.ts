@@ -1,7 +1,7 @@
 import { Observable, Observer } from 'rxjs/Rx';
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { QuestionAnswerComponent, MCQ_QUESTION_ANSWER_TYPE } from './index';
+import { QuestionAnswerComponent, ANSWER_TYPE, ANSWER_EVALUATION_TYPE } from './index';
 
 @Component({
     moduleId: module.id,
@@ -11,34 +11,47 @@ import { QuestionAnswerComponent, MCQ_QUESTION_ANSWER_TYPE } from './index';
     providers: [{ provide: QuestionAnswerComponent, useExisting: QuestionMcqComponent }]
 })
 
-
-
 export class QuestionMcqComponent extends QuestionAnswerComponent implements OnInit {
 
     @Input() question: any;
+    protected evaluations: any[];
+
+    protected get value(): any {
+        return this.form.value.answer;
+    }
 
     constructor(public fb: FormBuilder) {
         super();
-
+        debugger;        
     }
 
-    buildForm() {
-        this.form = this.fb.group({});
-        this.form.addControl('answer', new FormControl(''));
+    protected createForm(): FormGroup {
+        debugger;
+        var form = this.fb.group({});
+        form.addControl('answer', new FormControl(''));
+        return form;
+    }
+
+    protected evaluateChoicesAndShowAnswers(): void {
+        debugger;
+        this.evaluations = this.choices.map((elm: any) => {
+            return elm.type === ANSWER_TYPE.CORRECT ? ANSWER_EVALUATION_TYPE.CORRECT
+                : elm.content === this.value ? ANSWER_EVALUATION_TYPE.WRONG
+                    : ANSWER_EVALUATION_TYPE.NONE;
+        });
     }
 
     public getAnswer(): Observable<any> {
+        debugger;
+        
         return (new Observable<any>((observer: any) => {
             if (!this.form.valid) { observer.error('form is not valid'); }
             else {
-              
-                let userAnswer: any = this.form.value;
                 let result = this.question.answers
-                    .filter((elm: any) => { return elm.content === userAnswer.answer; })
-                    .filter((elm: any) => { return elm.type === MCQ_QUESTION_ANSWER_TYPE.CORRECT; })
+                    .filter((elm: any) => { return elm.content === this.value; })
+                    .filter((elm: any) => { return elm.type === ANSWER_TYPE.CORRECT; })
                     .length > 0;
 
-                
                 observer.next(result);
                 observer.complete();
             }
@@ -46,7 +59,7 @@ export class QuestionMcqComponent extends QuestionAnswerComponent implements OnI
     }
 
     ngOnInit() {
-
+        debugger;
         this.buildForm();
     }
 }

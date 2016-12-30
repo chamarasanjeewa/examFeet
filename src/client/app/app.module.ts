@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from "@angular/forms";
 import { AppComponent } from './app.component';
 //import { routes } from './app.routes';
 import { HomeRoutes } from './home/index';
