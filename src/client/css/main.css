@@ -114,7 +114,11 @@ border: 1px solid #fff;
   border-bottom: 1px solid #fff;
   padding-bottom: 20px;
 }
-
+control-messages,
+small{
+  font-size: 10px;
+  color:#d12e2e;
+}
 /*login / signin page css*/
 /*
 p {
@@ -127,7 +131,7 @@ p {
 
 ul {
   margin: 10px 0 0;
-  padding: 0 0 0 20px;
+#ff0000  padding: 0 0 0 20px;
 }
 
 li {
