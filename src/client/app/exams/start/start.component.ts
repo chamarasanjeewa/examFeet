@@ -40,15 +40,12 @@ export class StartComponent implements OnInit {
     get currentQuestionNo(): number {
         return this.itemsCarousel.currentItemNo;
     }
-    get renamingDuration(): number {
+    get duration(): number {
         return this.countDownTimer.renamingDuration;
     }
     get durationOnCurrentQuestion(): number {
-
-        return this._countDownTillPreviousQuestion - this.renamingDuration;
+        return this._countDownTillPreviousQuestion - this.duration;
     }
-
-
 
 
     constructor(public fb: FormBuilder,
@@ -117,7 +114,7 @@ export class StartComponent implements OnInit {
                     return;
                 }
 
-                this._countDownTillPreviousQuestion = this.renamingDuration;
+                this._countDownTillPreviousQuestion = this.duration;
                 this.itemsCarousel.goToNext();
                 this.countDownTimer.start();
             },

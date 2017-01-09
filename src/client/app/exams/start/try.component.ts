@@ -41,11 +41,11 @@ export class TryComponent implements OnInit {
     get currentQuestionNo(): number {
         return this.itemsCarousel.currentItemNo;
     }
-    get elapsedDuration(): number {
+    get duration(): number {
         return this.timer.elapsedDuration;
     }
     get durationOnCurrentQuestion(): number {
-        return this.elapsedDuration - this.durationTillPreviousQuestion;
+        return this.duration - this.durationTillPreviousQuestion;
     }
 
 
@@ -82,7 +82,7 @@ export class TryComponent implements OnInit {
                     return;
                 }
 
-                this.durationTillPreviousQuestion = this.elapsedDuration;
+                this.durationTillPreviousQuestion = this.duration;
                 this.itemsCarousel.goToNext();
                 this.timer.start();
             },

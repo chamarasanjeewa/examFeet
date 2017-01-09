@@ -48,8 +48,9 @@ export abstract class QuestionAnswerComponent implements OnChanges, AfterViewIni
     protected abstract createForm(): FormGroup;
     protected buildForm(): void {
         this.form = this.createForm();
+        this.evaluateChoicesAndShowAnswers();
         this.form.valueChanges.subscribe((values: any) => {
-             
+            debugger; 
             this.evaluateChoicesAndShowAnswers();
         });
     }
