@@ -133,7 +133,7 @@ export class StartComponent implements OnInit {
         if (!this._exam) {
             this.router.navigateByUrl('/exams');
         }
-        debugger;
+         
         var requestData: any = {
             email: this._user.email,
             serviceId: this._exam.id,

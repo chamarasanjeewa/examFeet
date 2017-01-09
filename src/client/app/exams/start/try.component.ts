@@ -73,7 +73,7 @@ export class TryComponent implements OnInit {
         this.timer.stop();
         this.answerComponent.getAnswer()
             .subscribe(res => {
-                debugger;
+                 
                 this.results[this.currentQuestionNo] = res;
 
                 if (!this.itemsCarousel.hasNext()) {
@@ -97,7 +97,7 @@ export class TryComponent implements OnInit {
         if (!this.exam) {
             this.router.navigateByUrl('/exams');
         }
-        debugger;
+         
         var requestData: any = {
             serviceId: this.exam.serviceId
         }

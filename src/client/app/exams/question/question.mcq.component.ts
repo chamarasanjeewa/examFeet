@@ -22,18 +22,18 @@ export class QuestionMcqComponent extends QuestionAnswerComponent implements OnI
 
     constructor(public fb: FormBuilder) {
         super();
-        debugger;        
+              
     }
 
     protected createForm(): FormGroup {
-        debugger;
+       
         var form = this.fb.group({});
         form.addControl('answer', new FormControl(''));
         return form;
     }
 
     protected evaluateChoicesAndShowAnswers(): void {
-        debugger;
+        
         this.evaluations = this.choices.map((elm: any) => {
             return elm.type === ANSWER_TYPE.CORRECT ? ANSWER_EVALUATION_TYPE.CORRECT
                 : elm.content === this.value ? ANSWER_EVALUATION_TYPE.WRONG
@@ -42,7 +42,7 @@ export class QuestionMcqComponent extends QuestionAnswerComponent implements OnI
     }
 
     public getAnswer(): Observable<any> {
-        debugger;
+       
         
         return (new Observable<any>((observer: any) => {
             if (!this.form.valid) { observer.error('form is not valid'); }
@@ -59,7 +59,7 @@ export class QuestionMcqComponent extends QuestionAnswerComponent implements OnI
     }
 
     ngOnInit() {
-        debugger;
+       
         this.buildForm();
     }
 }

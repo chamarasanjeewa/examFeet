@@ -21,12 +21,12 @@ export class QuestionTrueFalseComponent extends QuestionAnswerComponent implemen
 
     constructor(public fb: FormBuilder) {
         super();
-        debugger;
+       
 
     }
 
     protected createForm(): FormGroup {
-        debugger;
+         
         var form = this.fb.group({});
         for (let idx in this.choices) {
             form.addControl('answer[' + idx + ']', new FormControl(false));
@@ -35,7 +35,7 @@ export class QuestionTrueFalseComponent extends QuestionAnswerComponent implemen
     }
 
     protected evaluateChoicesAndShowAnswers(): void {
-        debugger;
+         
 
         this.evaluations = this.choices.map((elm: any, idx: number) => {
             var values = Object.values(this.value);
@@ -47,7 +47,7 @@ export class QuestionTrueFalseComponent extends QuestionAnswerComponent implemen
 
 
     public getAnswer(): Observable<any> {
-        debugger;
+         
 
         return (new Observable<any>((observer: any) => {
             if (!this.form.valid) { observer.error('form is not valid'); }
@@ -67,7 +67,7 @@ export class QuestionTrueFalseComponent extends QuestionAnswerComponent implemen
     }
 
     ngOnInit() {
-        debugger;
+         
 
         this.buildForm();
     }
