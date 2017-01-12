@@ -39,23 +39,31 @@ body {
   background:#ecf0f5 url(../../assets/images/main/main-background.jpg ) !important;
 }
 .main-content{
-  margin-top: 50px;
+  display: block;
+  margin-top: 60px;
 }
 .logo{
   width: 169px;
   margin-top: 30px;
   margin-bottom: 30px;
 }
+.navbar-brand{
+  color:#fff;
+}
+.navbar-green{
+  background: #80b018;
+}
 .main-left-navigation{
-  padding-top: 10%;
+  padding-top: 100px;
   position: fixed;
   top:0;
   left: 0;
-  width: 230px;
+  width: 320px;
   background: #222d32;
   height: 100%;
   color:#fff;
   font-size: 20px;
+  z-index: 2;
 }
 .main-left-navigation>li>a{
   color:#fff;
