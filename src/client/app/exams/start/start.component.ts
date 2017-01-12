@@ -57,7 +57,7 @@ export class StartComponent implements OnInit {
         this.QUESTION_TYPE = QUESTION_TYPE;
         this._countDownTillPreviousQuestion = 0;
         this._exam = JSON.parse(sessionStorage.getItem('exam') || '{}');
-        this._user = JSON.parse(localStorage.getItem('userInfo') || '{}');
+        this._user = JSON.parse(sessionStorage.getItem('userInfo') || '{}');
         this.countDownTimer = new CountDownTimer(this._countDownTillPreviousQuestion);
         this.itemsCarousel = new ItemsCarousel();
         this.countDownTimer.onElapsed.on((data) => {
@@ -126,6 +126,7 @@ export class StartComponent implements OnInit {
 
 
     ngOnInit() {
+        debugger;
 
         if (!this._exam) {
             this.router.navigateByUrl('/exams');
@@ -135,7 +136,7 @@ export class StartComponent implements OnInit {
             email: this._user.email,
             serviceId: this._exam.id,
             subscriptionId: this._exam.subscription.userSubscriptionId
-        }
+        } 
         this.examService.getSubscribedExamQuestions(requestData).subscribe(res => {
             this._exam.session = res;
             this.start();

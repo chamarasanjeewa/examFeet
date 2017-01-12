@@ -33,7 +33,7 @@ export class QuestionMcqComponent extends QuestionAnswerComponent implements OnI
     }
 
     protected evaluateChoicesAndShowAnswers(): void {
-        debugger;
+     
         this.evaluations = this.choices.map((elm: any) => {
             return elm.type === ANSWER_TYPE.CORRECT ? ANSWER_EVALUATION_TYPE.CORRECT
                 : elm.content === this.value ? ANSWER_EVALUATION_TYPE.WRONG

@@ -58,7 +58,7 @@ export class TryComponent implements OnInit {
         this.durationTillPreviousQuestion = 0;
         this.results = {};
         this.exam = JSON.parse(sessionStorage.getItem('exam') || '{}');
-        this.user = JSON.parse(localStorage.getItem('userInfo') || '{}');
+        this.user = JSON.parse(sessionStorage.getItem('userInfo') || '{}');
         this.timer = new Timer();
         this.itemsCarousel = new ItemsCarousel();
     }

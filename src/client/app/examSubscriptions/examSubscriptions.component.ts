@@ -30,7 +30,7 @@ export class ExamSubscriptionsComponent implements OnInit {
     }
 
     getSubscriptionsList() {
-        debugger;
+       
         if (!this.userInfo) { return; }
 
         this.mcqService.getSubscribedSessions(this.userInfo.userId).subscribe(res => {

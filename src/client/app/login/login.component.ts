@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
                 }else{
 
                     res.userId = +res.userId; 
-                    debugger;
+                 
                 sessionStorage.setItem('userInfo', JSON.stringify(res))
                 console.log(res);
                 this.router.navigate(['/dashBoard']);
