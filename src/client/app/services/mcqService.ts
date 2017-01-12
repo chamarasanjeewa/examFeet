@@ -104,13 +104,18 @@ export class McqService {
   }
 
   public subscribeSelectedExam(params: any) {
-
-    var url = '/consumer/services/subscribe/new';
+debugger;
+    var url = 'consumer/services/subscribe/new';
     let headers = this.httpService.getHttpHeaders();
     headers.append("Content-Type", 'application/json');
-    var subscribeParam = JSON.stringify(params);
-    return this.httpService.httpPostRequestObservable(params);
-
+    
+    var parameters: Object = {
+      url: url,
+      headers: headers,
+      body: JSON.stringify(params)
+    }
+   
+    return this.httpService.httpPostRequestObservable(parameters);
   }
 
   public getSubscribedSessions(userId: number) {
@@ -131,18 +136,7 @@ export class McqService {
     }
 
     return this.httpService.httpPostRequestObservable(parameters);
-    // var url=ApiEndpoint.url+'/consumer/services/subscriptions';
-    //   var searchOptionsJson = JSON.stringify(params);
-    //   return $http.post(url, searchOptionsJson)
-    //    .then(function (response) {
-    //           return response;
-    //       }).catch(function (e) {
-    //           console.log("error", e);
-    //            loggerService.showServerErrorToast();
-    //                    // throw e;
-    //       }) .finally(function () {
-
-    //       });
+   
 
 
   }

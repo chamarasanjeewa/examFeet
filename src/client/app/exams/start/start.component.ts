@@ -29,6 +29,8 @@ export class StartComponent implements OnInit {
     countDownTimer: CountDownTimer;
     itemsCarousel: ItemsCarousel;
     QUESTION_TYPE: QuestionType;
+    private expireMessage: string;
+    private subscriptionExpired:boolean;
 
 
     get answerComponent(): QuestionAnswerComponent {
@@ -106,11 +108,11 @@ export class StartComponent implements OnInit {
 
                 if (!this.itemsCarousel.hasNext()) {
                     console.log(res);
-                   var examData={email: this._user.email,serviceId: this._exam.id,results:res};
-                     sessionStorage.setItem('results', JSON.stringify(examData));
-                   
+                    var examData = { email: this._user.email, serviceId: this._exam.id, results: res };
+                    sessionStorage.setItem('results', JSON.stringify(examData));
+
                     // this.exam = JSON.parse(sessionStorage.getItem('exam') || '{}');
-                     this.router.navigateByUrl('/results');
+                    this.router.navigateByUrl('/results');
                     return;
                 }
 
@@ -131,15 +133,22 @@ export class StartComponent implements OnInit {
         if (!this._exam) {
             this.router.navigateByUrl('/exams');
         }
-         
+
         var requestData: any = {
             email: this._user.email,
             serviceId: this._exam.id,
             subscriptionId: this._exam.subscription.userSubscriptionId
-        } 
+        }
         this.examService.getSubscribedExamQuestions(requestData).subscribe(res => {
-            this._exam.session = res;
-            this.start();
+            if (res.statusCode == -1) {
+                this.subscriptionExpired=true;
+                this.expireMessage = res.statusMessage;
+            } else {
+                this.subscriptionExpired=false;
+                this._exam.session = res;
+                this.start();
+            }
+
         });
     }
 }

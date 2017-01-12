@@ -19,12 +19,19 @@ export class PaypalComponent implements OnInit {
   amount: any;
   returnUrl: any;
   cancelUrl: any;
+  form:any;
+  //@ViewChild('form') any; 
 
   constructor(private route: ActivatedRoute,
     private sharedService: SharedService,
     private httpService: HttpService,
     private http: Http, private mcqService: McqService) {
 
+  }
+
+  submit(form:any){
+    debugger;
+    this.postInfo();
   }
 
   ngOnInit() {
@@ -34,35 +41,46 @@ export class PaypalComponent implements OnInit {
 
     this.amount = examSubscriptionInfo.subscriptionCost;
     // this.sharedService.examPriceInfo=null;
-    this.returnUrl = " http://localhost:5555/exams/" + examSubscriptionInfo.serviceId + "/beforeStart";
+    this.returnUrl = " http://localhost:5555/paypal/done";
     this.cancelUrl = "http://localhost:5555/exams/" + examSubscriptionInfo.serviceId;
 
   }
 
   subscribeToExam() {//TODO this should be verified with the payment in paypal
-debugger;
+    debugger;
     var examSubscriptionInfo = JSON.parse(sessionStorage.getItem('examSubscriptionInfo'));
     var user = JSON.parse(sessionStorage.getItem('userInfo') || '{}');
     
-    var params = {
-      "serviceId": examSubscriptionInfo.serviceId,
-      "userId": user.id
-    }
+    var paymentInfo= {
+          "payment": {
+            "noOfMonths":2,
+            "priceId":2,
+            "currencyCode": "USD",//TODO currencyCode
+            "startDate": '2007/4/4',
+            "endDate":'2007/4/4', 
+            "paymentMethod": "paypal",
+            "amount": examSubscriptionInfo.subscriptionCost,
+            "paymentReference":""
+          },
+          "serviceId":examSubscriptionInfo.serviceId,
+          "userId": user.userId
+     }
 
-    this.mcqService.subscribeSelectedExam(params).subscribe(res => {
+  
+    this.mcqService.subscribeSelectedExam(paymentInfo).subscribe(res => {
       console.log(res);
-      sessionStorage.setItem('exam', JSON.stringify(res));
+    
+      sessionStorage.setItem('examSubscriptionInfomation', JSON.stringify(res));
       // this.router.navigate(['/']);
     },
       err => {
-
         console.log(err);
       });
   }
 
   postInfo() {
 
-    this.subscribeToExam();//TODO
+   // this.subscribeToExam();//TODO
 
     let headers = this.httpService.getHttpHeaders();
     headers.append('Content-Type', 'text/html; charset=utf-8');
