@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -7,9 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['navbar.component.css'],
 })
 
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
     menuVisible:boolean;
     toggle(){
         this.menuVisible=!this.menuVisible;
     }
+    
+    ngOnInit() {
+this.menuVisible=true;
+
+   }
+
  }
