@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" (click)=toggle()>
                 <i class="fa fa-bars  fa-lg"></i>
             </a>
         </div>
@@ -16,8 +16,8 @@
   <a [routerLink]="['/login']" [routerLinkActive]="['router-link-active']">Logout</a>
 </nav> -->
 
-<ul class="nav nav-pills nav-stacked main-left-navigation">
-  <li>MANU</li>
+<ul class="nav nav-pills nav-stacked main-left-navigation" [hidden]="!menuVisible">
+  <li>MENU</li>
     <li>
         <a [routerLink]="['/dashBoard']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">Dashboard</a>
     </li>
