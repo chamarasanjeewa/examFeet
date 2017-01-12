@@ -38,13 +38,35 @@ body {
   height: 100%;
   background:#ecf0f5 url(../../assets/images/main/main-background.jpg ) !important;
 }
-
+.main-content{
+  margin-top: 50px;
+}
 .logo{
   width: 169px;
   margin-top: 30px;
   margin-bottom: 30px;
 }
-
+.main-left-navigation{
+  padding-top: 10%;
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 230px;
+  background: #222d32;
+  height: 100%;
+  color:#fff;
+  font-size: 20px;
+}
+.main-left-navigation>li>a{
+  color:#fff;
+  font-weight: 300;
+}
+.main-left-navigation>li:first-child{
+  padding-left: 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font: 300;
+}
 /*login / signin page css*/
 
 .login-box{

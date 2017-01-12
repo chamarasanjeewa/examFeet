@@ -1,16 +1,36 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">
-        <i class="fa fa-bars  fa-lg"></i>
-      </a>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <i class="fa fa-bars  fa-lg"></i>
+            </a>
+        </div>
     </div>
-  </div>
 </nav>
-<nav>
+
+<!-- <nav class="main-left-navigation">
   <a [routerLink]="['/dashBoard']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">Dashboard</a>
   <a [routerLink]="['/exams']" [routerLinkActive]="['router-link-active']">Exams</a>
   <a [routerLink]="['/subscriptions']" [routerLinkActive]="['router-link-active']">My subscriptions</a>
   <a [routerLink]="['/about']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">About</a>
   <a [routerLink]="['/login']" [routerLinkActive]="['router-link-active']">Logout</a>
-</nav>
+</nav> -->
+
+<ul class="nav nav-pills nav-stacked main-left-navigation">
+  <li>MANU</li>
+    <li>
+        <a [routerLink]="['/dashBoard']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">Dashboard</a>
+    </li>
+    <li>
+        <a [routerLink]="['/exams']" [routerLinkActive]="['router-link-active']">Exams</a>
+    </li>
+    <li>
+        <a [routerLink]="['/subscriptions']" [routerLinkActive]="['router-link-active']">My subscriptions</a>
+    </li>
+    <li>
+        <a [routerLink]="['/about']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">About</a>
+    </li>
+    <li>
+        <a [routerLink]="['/login']" [routerLinkActive]="['router-link-active']">Logout</a>
+    </li>
+</ul>
