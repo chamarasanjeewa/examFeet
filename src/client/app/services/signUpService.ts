@@ -14,7 +14,7 @@ export class SignUpService{
     
   public  registerUser(signUpModel:SignUpModel){
       //  let options       = new RequestOptions({ headers: headers }); // Create a request option
-debugger;
+ 
          let registration = {
        // "companyName": registerData.companyName,
         "contactName":signUpModel.email,// registerData.contactName,

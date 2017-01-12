@@ -24,12 +24,12 @@ export class QuestionTypeComponent extends QuestionAnswerComponent implements On
 
     constructor(public fb: FormBuilder) {
         super();
-        debugger;
+         
 
     }
 
     protected createForm(): FormGroup {
-        debugger;
+         
         var form = this.fb.group({});
         form.addControl('answer', new FormControl(''));
 
@@ -37,7 +37,7 @@ export class QuestionTypeComponent extends QuestionAnswerComponent implements On
     }
 
     protected evaluateChoicesAndShowAnswers(): void {
-        debugger;
+         
         this.evaluation = (!!this.value && !!this.value.trim().length)
             ? ANSWER_EVALUATION_TYPE.CORRECT
             : ANSWER_EVALUATION_TYPE.WRONG;
@@ -45,7 +45,7 @@ export class QuestionTypeComponent extends QuestionAnswerComponent implements On
 
 
     public getAnswer(): Observable<any> {
-        debugger;
+         
         return (new Observable<any>((observer: any) => {
             if (!this.form.valid) { observer.error('form is not valid'); }
             else {
@@ -58,7 +58,7 @@ export class QuestionTypeComponent extends QuestionAnswerComponent implements On
     }
 
     ngOnInit() {
-        debugger;
+         
 
         this.buildForm();
 

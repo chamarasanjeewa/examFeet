@@ -20,22 +20,23 @@ import { QuestionAnswerComponent, QuestionMcqComponent, QuestionTrueFalseCompone
 })
 
 export class BeforeStartComponent implements OnInit {
-    private _exam: any;
-    private _user: any;
-    private _countDownTillPreviousQuestion: number;
-    countDownTimer: CountDownTimer;
-    itemsCarousel: ItemsCarousel;
-    QUESTION_TYPE: QuestionType;
+    private _examId: number;
 
     constructor(public fb: FormBuilder,
         private route: ActivatedRoute,
-        public router: Router,
-        public examService: ExamService) {
+        public router: Router) {
 
-         }
+    }
 
-   
+
+    public start(): void {
+        this.router.navigateByUrl('/exams/' + this._examId + '/start');
+    }
+
     ngOnInit() {
-
+        this.route.params
+            .subscribe((params: Params) => {
+                this._examId = +params['id'];
+            });
     }
 }

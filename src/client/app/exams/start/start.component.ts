@@ -29,6 +29,8 @@ export class StartComponent implements OnInit {
     countDownTimer: CountDownTimer;
     itemsCarousel: ItemsCarousel;
     QUESTION_TYPE: QuestionType;
+    private expireMessage: string;
+    private subscriptionExpired:boolean;
 
 
     get answerComponent(): QuestionAnswerComponent {
@@ -40,15 +42,12 @@ export class StartComponent implements OnInit {
     get currentQuestionNo(): number {
         return this.itemsCarousel.currentItemNo;
     }
-    get renamingDuration(): number {
+    get duration(): number {
         return this.countDownTimer.renamingDuration;
     }
     get durationOnCurrentQuestion(): number {
-
-        return this._countDownTillPreviousQuestion - this.renamingDuration;
+        return this._countDownTillPreviousQuestion - this.duration;
     }
-
-
 
 
     constructor(public fb: FormBuilder,
@@ -60,7 +59,7 @@ export class StartComponent implements OnInit {
         this.QUESTION_TYPE = QUESTION_TYPE;
         this._countDownTillPreviousQuestion = 0;
         this._exam = JSON.parse(sessionStorage.getItem('exam') || '{}');
-        this._user = JSON.parse(localStorage.getItem('userInfo') || '{}');
+        this._user = JSON.parse(sessionStorage.getItem('userInfo') || '{}');
         this.countDownTimer = new CountDownTimer(this._countDownTillPreviousQuestion);
         this.itemsCarousel = new ItemsCarousel();
         this.countDownTimer.onElapsed.on((data) => {
@@ -109,15 +108,15 @@ export class StartComponent implements OnInit {
 
                 if (!this.itemsCarousel.hasNext()) {
                     console.log(res);
-                   var examData={email: this._user.email,serviceId: this._exam.id,results:res};
-                     sessionStorage.setItem('results', JSON.stringify(examData));
-                   
+                    var examData = { email: this._user.email, serviceId: this._exam.id, results: res };
+                    sessionStorage.setItem('results', JSON.stringify(examData));
+
                     // this.exam = JSON.parse(sessionStorage.getItem('exam') || '{}');
-                     this.router.navigateByUrl('/results');
+                    this.router.navigateByUrl('/results');
                     return;
                 }
 
-                this._countDownTillPreviousQuestion = this.renamingDuration;
+                this._countDownTillPreviousQuestion = this.duration;
                 this.itemsCarousel.goToNext();
                 this.countDownTimer.start();
             },
@@ -129,19 +128,27 @@ export class StartComponent implements OnInit {
 
 
     ngOnInit() {
+        debugger;
 
         if (!this._exam) {
             this.router.navigateByUrl('/exams');
         }
-        debugger;
+
         var requestData: any = {
             email: this._user.email,
             serviceId: this._exam.id,
             subscriptionId: this._exam.subscription.userSubscriptionId
         }
         this.examService.getSubscribedExamQuestions(requestData).subscribe(res => {
-            this._exam.session = res;
-            this.start();
+            if (res.statusCode == -1) {
+                this.subscriptionExpired=true;
+                this.expireMessage = res.statusMessage;
+            } else {
+                this.subscriptionExpired=false;
+                this._exam.session = res;
+                this.start();
+            }
+
         });
     }
 }

@@ -41,11 +41,11 @@ export class TryComponent implements OnInit {
     get currentQuestionNo(): number {
         return this.itemsCarousel.currentItemNo;
     }
-    get elapsedDuration(): number {
+    get duration(): number {
         return this.timer.elapsedDuration;
     }
     get durationOnCurrentQuestion(): number {
-        return this.elapsedDuration - this.durationTillPreviousQuestion;
+        return this.duration - this.durationTillPreviousQuestion;
     }
 
 
@@ -58,7 +58,7 @@ export class TryComponent implements OnInit {
         this.durationTillPreviousQuestion = 0;
         this.results = {};
         this.exam = JSON.parse(sessionStorage.getItem('exam') || '{}');
-        this.user = JSON.parse(localStorage.getItem('userInfo') || '{}');
+        this.user = JSON.parse(sessionStorage.getItem('userInfo') || '{}');
         this.timer = new Timer();
         this.itemsCarousel = new ItemsCarousel();
     }
@@ -73,7 +73,7 @@ export class TryComponent implements OnInit {
         this.timer.stop();
         this.answerComponent.getAnswer()
             .subscribe(res => {
-                debugger;
+                 
                 this.results[this.currentQuestionNo] = res;
 
                 if (!this.itemsCarousel.hasNext()) {
@@ -82,7 +82,7 @@ export class TryComponent implements OnInit {
                     return;
                 }
 
-                this.durationTillPreviousQuestion = this.elapsedDuration;
+                this.durationTillPreviousQuestion = this.duration;
                 this.itemsCarousel.goToNext();
                 this.timer.start();
             },
@@ -97,7 +97,7 @@ export class TryComponent implements OnInit {
         if (!this.exam) {
             this.router.navigateByUrl('/exams');
         }
-        debugger;
+         
         var requestData: any = {
             serviceId: this.exam.serviceId
         }

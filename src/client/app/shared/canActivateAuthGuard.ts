@@ -9,8 +9,8 @@ export class CanActivateViaAuthGuard implements CanActivate {
   constructor(private sharedService: SharedService,public router:Router) {}
 
   canActivate(next:ActivatedRouteSnapshot, state:RouterStateSnapshot) {
-    
-     var userInfo= JSON.parse(localStorage.getItem('userInfo'));
+  
+     var userInfo= JSON.parse(sessionStorage.getItem('userInfo'));
     if (userInfo!=undefined && userInfo!=null) {
       return  true;
     }

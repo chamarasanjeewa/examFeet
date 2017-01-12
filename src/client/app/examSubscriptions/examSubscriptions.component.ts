@@ -26,10 +26,11 @@ export class ExamSubscriptionsComponent implements OnInit {
         private router: Router,
         public sharedService: SharedService) {
 
-        this.userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+        this.userInfo = JSON.parse(sessionStorage.getItem('userInfo') || '{}');
     }
 
     getSubscriptionsList() {
+       
         if (!this.userInfo) { return; }
 
         this.mcqService.getSubscribedSessions(this.userInfo.userId).subscribe(res => {
@@ -41,6 +42,7 @@ export class ExamSubscriptionsComponent implements OnInit {
     }
 
     selectSubscription(subscription: any) {
+        debugger;
         var exam = JSON.parse(sessionStorage.getItem('exam') || '{}');
         exam.id = subscription.serviceId;
         exam.subscription = subscription;

@@ -48,8 +48,9 @@ export abstract class QuestionAnswerComponent implements OnChanges, AfterViewIni
     protected abstract createForm(): FormGroup;
     protected buildForm(): void {
         this.form = this.createForm();
+        this.evaluateChoicesAndShowAnswers();
         this.form.valueChanges.subscribe((values: any) => {
-            debugger;
+          
             this.evaluateChoicesAndShowAnswers();
         });
     }
@@ -60,7 +61,7 @@ export abstract class QuestionAnswerComponent implements OnChanges, AfterViewIni
     }
 
     protected reset(): void {
-        debugger;
+         
         this.choices = this.question.answers.filter((elm: any) => !this.isAnswerExplanation(elm));
 
         var explanations = this.question.answers.filter((elm: any) => this.isAnswerExplanation(elm));
@@ -70,12 +71,12 @@ export abstract class QuestionAnswerComponent implements OnChanges, AfterViewIni
     }
 
     ngAfterViewInit(): void {
-        debugger;
+         
 
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        debugger;
+         
         this.reset();
     }
 }

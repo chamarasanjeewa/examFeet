@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
 
-        localStorage.setItem('userInfo', null);
+        sessionStorage.setItem('userInfo', null);
 
         this.loginForm = this.fb.group({
             userName: ['', Validators.compose([
@@ -55,7 +55,8 @@ export class LoginComponent implements OnInit {
                 }else{
 
                     res.userId = +res.userId; 
-                localStorage.setItem('userInfo', JSON.stringify(res))
+                 
+                sessionStorage.setItem('userInfo', JSON.stringify(res))
                 console.log(res);
                 this.router.navigate(['/dashBoard']);
                 }

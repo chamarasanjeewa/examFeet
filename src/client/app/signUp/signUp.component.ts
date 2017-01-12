@@ -290,7 +290,7 @@ export class SignUpComponent implements OnInit {
         
         
        .subscribe(res => {
-  debugger;
+   
   
                 if(res.statusCode==-1){
                    this.signUpError=res.statusMessage;
