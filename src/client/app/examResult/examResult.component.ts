@@ -32,11 +32,12 @@ export class ExamResultComponent implements OnInit {
             var summary = this.examInfo.results.summary.summary[0];
             this.totalCorrect = summary.correct;
             var totalQuestions = summary.total;
+            debugger;
             this.correctAnswerPercentage =( (this.totalCorrect / totalQuestions) * 100).toFixed(1);
 
             this.totalIncorrect = totalQuestions - this.totalCorrect;
             this.totalTimeDuration =  ((this.examInfo.results.summary.totalTimeTaken/1000)).toFixed(1);
-            this.averageTimePerQuestion = ((this.totalTimeDuration / totalQuestions)/1000).toFixed(1);
+            this.averageTimePerQuestion = ((this.totalTimeDuration / totalQuestions)).toFixed(1);
         }
 
 
