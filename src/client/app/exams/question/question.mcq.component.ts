@@ -47,6 +47,7 @@ export class QuestionMcqComponent extends QuestionAnswerComponent implements OnI
         return (new Observable<any>((observer: any) => {
             if (!this.form.valid) { observer.error('form is not valid'); }
             else {
+
                 let result = this.question.answers
                     .filter((elm: any) => { return elm.content === this.value; })
                     .filter((elm: any) => { return elm.type === ANSWER_TYPE.CORRECT; })

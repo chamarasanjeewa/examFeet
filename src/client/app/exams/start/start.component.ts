@@ -8,6 +8,7 @@ import { ILiteEvent } from '../../utilities/ILiteEvent'
 import { LiteEvent } from '../../utilities/LiteEvent'
 import { CountDownTimer } from '../../utilities/countDownTimer'
 import { ItemsCarousel } from '../../utilities/ItemsCarousel'
+import { Result } from '../../core/models/index'
 import { QuestionAnswerComponent, QuestionMcqComponent, QuestionTrueFalseComponent, QuestionTypeComponent, QuestionType, QUESTION_TYPE } from './index';
 
 
@@ -30,7 +31,7 @@ export class StartComponent implements OnInit {
     itemsCarousel: ItemsCarousel;
     QUESTION_TYPE: QuestionType;
     private expireMessage: string;
-    private subscriptionExpired:boolean;
+    private subscriptionExpired: boolean;
 
 
     get answerComponent(): QuestionAnswerComponent {
@@ -41,6 +42,12 @@ export class StartComponent implements OnInit {
     }
     get currentQuestionNo(): number {
         return this.itemsCarousel.currentItemNo;
+    }
+    get totalQuestionsCount(): number {
+        return this.itemsCarousel.itemsCount;
+    }
+    get isLastQuestion(): boolean {
+        return !this.itemsCarousel.hasNext();
     }
     get duration(): number {
         return this.countDownTimer.renamingDuration;
@@ -106,29 +113,40 @@ export class StartComponent implements OnInit {
             })
             .subscribe(res => {
 
-                if (!this.itemsCarousel.hasNext()) {
-                    console.log(res);
-                    var examData = { email: this._user.email, serviceId: this._exam.id, results: res };
-                    sessionStorage.setItem('results', JSON.stringify(examData));
-
-                    // this.exam = JSON.parse(sessionStorage.getItem('exam') || '{}');
-                    this.router.navigateByUrl('/results');
+                if (this.itemsCarousel.hasNext()) {
+                    this._countDownTillPreviousQuestion = this.duration;
+                    this.itemsCarousel.goToNext();
+                    this.countDownTimer.start();
                     return;
                 }
 
-                this._countDownTillPreviousQuestion = this.duration;
-                this.itemsCarousel.goToNext();
-                this.countDownTimer.start();
+
+                var examData = {
+                    email: this._user.email,
+                    serviceId: this._exam.id,
+                    isTry: false,
+                    results: new Result()
+                };
+
+                if (res.summary && res.summary.summary && res.summary.summary.length) {
+                    examData.results.duration = res.summary.totalTimeTaken;
+                    examData.results.questions = res.summary.summary[0].total;
+                    examData.results.correct = res.summary.summary[0].correct;
+                    examData.results.incorrect = res.summary.summary[0].incorrect;
+                }
+
+
+                sessionStorage.setItem('results', JSON.stringify(examData));
+                this.router.navigateByUrl('/results');
             },
             error => {
-
                 this.countDownTimer.start();
             });
     }
 
 
     ngOnInit() {
-        debugger;
+
 
         if (!this._exam) {
             this.router.navigateByUrl('/exams');
@@ -141,10 +159,10 @@ export class StartComponent implements OnInit {
         }
         this.examService.getSubscribedExamQuestions(requestData).subscribe(res => {
             if (res.statusCode == -1) {
-                this.subscriptionExpired=true;
+                this.subscriptionExpired = true;
                 this.expireMessage = res.statusMessage;
             } else {
-                this.subscriptionExpired=false;
+                this.subscriptionExpired = false;
                 this._exam.session = res;
                 this.start();
             }
