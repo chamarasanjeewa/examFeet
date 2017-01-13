@@ -16,7 +16,7 @@
 
 
 import { Observable, Observer } from 'rxjs/Rx';
-import { Component, OnInit, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ANSWER_TYPE, AnswerEvaluationType, ANSWER_EVALUATION_TYPE } from './index';
 
@@ -25,7 +25,7 @@ import { ANSWER_TYPE, AnswerEvaluationType, ANSWER_EVALUATION_TYPE } from './ind
     selector: 'sd-question'
 })
 
-export abstract class QuestionAnswerComponent implements OnChanges, AfterViewInit {
+export abstract class QuestionAnswerComponent implements OnChanges {
 
     protected form: FormGroup;
     protected choices: any[];
@@ -68,11 +68,6 @@ export abstract class QuestionAnswerComponent implements OnChanges, AfterViewIni
         this.explanation = (!explanations || !explanations.length) ? null : explanations[0];
         this.showAnswer = false;
         this.buildForm();
-    }
-
-    ngAfterViewInit(): void {
-         
-
     }
 
     ngOnChanges(changes: SimpleChanges) {

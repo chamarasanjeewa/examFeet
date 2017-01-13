@@ -1,62 +1,64 @@
-
- 	
 <div class="row">
   <div class="col col-100 logo ">
-            
-            <div class="logotext search-exam-head">
-        <h2>Exam Results!</h2>
-         <p>Congratulations !!! You have completed the exam<br/>enjoy your results.</p>
-<h2>Your Results</h2>
-     </div>
-      
+
+    <div class="logotext search-exam-head">
+      <h2>Exam Results!</h2>
+      <p>Congratulations !!! You have completed the exam<br/>enjoy your results.</p>
+      <h2>Your Results</h2>
+    </div>
+
   </div>
 </div>
 <div class="row">
 
   <div class="col col-100 logo">
-      <div class="testresult">
-         <div class="testresult-two">
-            <h2>{{correctAnswerPercentage}} %</h2>
-         </div>
+    <div class="testresult">
+      <div class="testresult-two">
+        <h2>{{correctAnswerPercentage}} %</h2>
       </div>
+    </div>
   </div>
-</div><!--row-->
+</div>
+<!--row-->
 
 <div class="row content-padding exam-info">
   <div class="col col-100 ">
-     <h3>Total Correct</h3> <p class="test-result-analytics">{{totalCorrect}} Questions</p>
-      <hr>
+    <h3>Total Correct</h3>
+    <p class="test-result-analytics">{{totalCorrect}} Questions</p>
+    <hr>
   </div>
-</div><!--row-->
+</div>
+<!--row-->
 
 <div class="row content-padding exam-info">
   <div class="col col-100 ">
-     <h3>Total Incorrect</h3> <p class="test-result-analytics weak">{{totalIncorrect}} Questions</p>
-     <hr>
+    <h3>Total Incorrect</h3>
+    <p class="test-result-analytics weak">{{totalIncorrect}} Questions</p>
+    <hr>
   </div>
-</div><!--row-->
+</div>
+<!--row-->
 
 <div class="row content-padding exam-info">
   <div class="col col-100 ">
-     <h3>Average Time per Question </h3> <p class="test-result-analytics">{{averageTimePerQuestion}} secounds per Question</p>
-     <hr>
+    <h3>Average Time per Question </h3>
+    <p class="test-result-analytics">{{averageTimePerQuestion}} secounds per Question</p>
+    <hr>
   </div>
-</div><!--row-->
+</div>
+<!--row-->
 
 <div class="row content-padding exam-info">
   <div class="col col-100 ">
-     <h3>Time Taken  </h3> <p class="test-result-analytics">{{totalTimeDuration}} secounds</p>
-     <hr>
+    <h3>Time Taken </h3>
+    <p class="test-result-analytics">{{totalTimeDuration}} secounds</p>
+    <hr>
   </div>
-</div><!--row-->
+</div>
+<!--row-->
 
 
 
-   
-      <button class="button button-full exam-infobtn" (click)="showQuestion()">Try Again</button>
-      <button class="button button-full exam-infobtn"(click)="showHistory()">Exam History</button>
-     
- 
 
-
-	
+<button class="button button-full exam-infobtn" (click)="showQuestion()">Try Again</button>
+<button class="button button-full exam-infobtn" (click)="showHistory()">Exam History</button>

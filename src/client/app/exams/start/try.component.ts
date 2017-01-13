@@ -8,6 +8,7 @@ import { ILiteEvent } from '../../utilities/ILiteEvent'
 import { LiteEvent } from '../../utilities/LiteEvent'
 import { Timer } from '../../utilities/timer'
 import { ItemsCarousel } from '../../utilities/ItemsCarousel'
+import { Result } from '../../core/models/index'
 import { QuestionAnswerComponent, QuestionMcqComponent, QuestionTrueFalseComponent, QuestionTypeComponent, QuestionType, QUESTION_TYPE } from './index';
 
 
@@ -41,6 +42,12 @@ export class TryComponent implements OnInit {
     get currentQuestionNo(): number {
         return this.itemsCarousel.currentItemNo;
     }
+    get totalQuestionsCount(): number {
+        return this.itemsCarousel.itemsCount;
+    }
+    get isLastQuestion(): boolean {
+        return !this.itemsCarousel.hasNext();
+    }
     get duration(): number {
         return this.timer.elapsedDuration;
     }
@@ -73,18 +80,29 @@ export class TryComponent implements OnInit {
         this.timer.stop();
         this.answerComponent.getAnswer()
             .subscribe(res => {
-                 
                 this.results[this.currentQuestionNo] = res;
 
-                if (!this.itemsCarousel.hasNext()) {
-                    sessionStorage.setItem('results', JSON.stringify(this.results));
-                    this.router.navigateByUrl('/results');
+                if (this.itemsCarousel.hasNext()) {
+                    this.durationTillPreviousQuestion = this.duration;
+                    this.itemsCarousel.goToNext();
+                    this.timer.start();
                     return;
                 }
 
-                this.durationTillPreviousQuestion = this.duration;
-                this.itemsCarousel.goToNext();
-                this.timer.start();
+                var examData = {
+                    email: this.user.email,
+                    serviceId: this.exam.serviceId,
+                    isTry: true,
+                    results: new Result()
+                };
+
+                examData.results.duration = this.duration;
+                examData.results.questions = this.itemsCarousel.items.length;
+                examData.results.correct = Object.values(this.results).filter((elm: boolean) => { return elm; }).length;
+                examData.results.incorrect = Object.values(this.results).filter((elm: boolean) => { return !elm; }).length;
+
+                sessionStorage.setItem('results', JSON.stringify(examData));
+                this.router.navigateByUrl('/results');
             },
             error => {
                 this.timer.start();
@@ -97,7 +115,7 @@ export class TryComponent implements OnInit {
         if (!this.exam) {
             this.router.navigateByUrl('/exams');
         }
-         
+
         var requestData: any = {
             serviceId: this.exam.serviceId
         }

@@ -11,6 +11,9 @@ export class ItemsCarousel {
     set items(value: any[]) {
         this._items = value;
     }
+    get itemsCount(): any {
+       return (!this._items) ? null : this.items.length;
+    }
     get currentItem(): any {
        return (!this._items || this._items.length < this._currentItemNo) ? null : this.items[this.currentItemNo - 1];
     }

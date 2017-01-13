@@ -104,7 +104,7 @@ export class McqService {
   }
 
   public subscribeSelectedExam(params: any) {
-debugger;
+
     var url = 'consumer/services/subscribe/new';
     let headers = this.httpService.getHttpHeaders();
     headers.append("Content-Type", 'application/json');
