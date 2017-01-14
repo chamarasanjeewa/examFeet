@@ -1,4 +1,5 @@
-
+<<<<<<< HEAD
+<!--
 <div *ngIf="subscriptionExpired">{{expireMessage}}</div>
 <div *ngIf="!subscriptionExpired">
 <h2>Questions #{{currentQuestionNo}} of {{totalQuestionsCount}}</h2>
@@ -20,8 +21,38 @@
         <sd-question-type [question]="currentQuestion"></sd-question-type>
     </div>
 
-    <!--<button (click)="goToPrevious()">Prevoius</button>-->
+    <!--<button (click)="goToPrevious()">Prevoius</button>
     <button (click)="onAnswerQuestion()">{{(isLastQuestion ? 'Results' :  'Next')}}</button>
 
+=======-->
+<div class="row">
+  <div class="col-md-12">
+    <div *ngIf="subscriptionExpired">{{expireMessage}}</div>
+    <div *ngIf="!subscriptionExpired">
+    <h2>Questions #{{currentQuestionNo}}</h2>
+
+    <div>{{duration | duration}}</div>
+  </div>
+  <div *ngIf="!!currentQuestion">
+      <sd-question-content [question]="currentQuestion"></sd-question-content>
+
+      <div *ngIf="currentQuestion.questionType === QUESTION_TYPE.MCQ">
+          <sd-question-mcq [question]="currentQuestion"></sd-question-mcq>
+      </div>
+
+      <div *ngIf="currentQuestion.questionType === QUESTION_TYPE.TRUE_OR_FALSE">
+          <sd-question-truefalse [question]="currentQuestion"></sd-question-truefalse>
+      </div>
+
+      <div *ngIf="currentQuestion.questionType === QUESTION_TYPE.TYPE_ANSWER">
+          <sd-question-type [question]="currentQuestion"></sd-question-type>
+      </div>
+
+      <!--<button (click)="goToPrevious()">Prevoius</button>-->
+<br>
+      <button class="btn btn-success" (click)="onAnswerQuestion()">Next</button>
+
+  </div>
 </div>
+>>>>>>> b4e334677464080098271763796c57bcc5450ac8
 </div>
