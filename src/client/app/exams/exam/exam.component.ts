@@ -33,6 +33,10 @@ export class ExamComponent implements OnInit {
         { id: 12, value: "12 Months" }
     ];
     selectedMonth: any;
+    public get canTry(): boolean {
+        return !!this.exam && !!this.exam.sampleQuestions && !!this.exam.sampleQuestions.numOFSampleQuection; 
+    }
+
     constructor(public fb: FormBuilder,
         private route: ActivatedRoute,
         public router: Router,

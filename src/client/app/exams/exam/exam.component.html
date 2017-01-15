@@ -5,7 +5,7 @@
 <div>Exam Provider <span>{{exam?.provider}}</span></div>
 <div>Number of questions available <span>{{exam?.questionsCount}}</span></div>
 
-<div class="row content-padding">
+<div *ngIf="canTry" class="row content-padding">
     <button class="button button-full exam-infobtn" (click)="try()">Try</button>
 </div>
 
