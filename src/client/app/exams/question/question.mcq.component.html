@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-  <ul>
+  <ul class="mcq-ul">
     <li *ngFor="let choice of choices; let i = index; trackBy: trackByFn" [ngClass]="{'correct': (showAnswer && evaluations[i] === ANSWER_EVALUATION_TYPE.CORRECT),
           'wrong': (showAnswer && evaluations[i] === ANSWER_EVALUATION_TYPE.WRONG)}">
       <input type="radio" formControlName="answer" value="{{choice.content}}" /> {{choice.content}}
@@ -8,6 +8,12 @@
 </form>
 
 <div *ngIf="isSampleQuestion">
+<!--<<<<<<< HEAD-->
   <!--<textarea *ngIf="showAnswer" rows="2" cols="auto">{{explanation?.content}}</textarea>-->
-  <button type="button" (click)="showAnswer = !showAnswer">{{!showAnswer ? "Show" : "Hide" }} Answer</button>
+  <!--<button type="button" (click)="showAnswer = !showAnswer">{{!showAnswer ? "Show" : "Hide" }} Answer</button>
+</div>-->
+
+  <textarea *ngIf="showAnswer" rows="2" cols="auto">{{explanation?.content}}</textarea>
+  <button type="button" class="btn btn-success"(click)="showAnswer = !showAnswer">{{!showAnswer ? "Show" : "Hide" }} Answer</button>
 </div>
+
