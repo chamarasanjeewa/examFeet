@@ -42,7 +42,7 @@ export class ExamSubscriptionsComponent implements OnInit {
     }
 
     selectSubscription(subscription: any) {
-        debugger;
+
         var exam = JSON.parse(sessionStorage.getItem('exam') || '{}');
         exam.id = subscription.serviceId;
         exam.subscription = subscription;

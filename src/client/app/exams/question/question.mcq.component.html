@@ -8,6 +8,6 @@
 </form>
 
 <div *ngIf="isSampleQuestion">
-  <textarea *ngIf="showAnswer" rows="2" cols="auto">{{explanation?.content}}</textarea>
+  <!--<textarea *ngIf="showAnswer" rows="2" cols="auto">{{explanation?.content}}</textarea>-->
   <button type="button" (click)="showAnswer = !showAnswer">{{!showAnswer ? "Show" : "Hide" }} Answer</button>
 </div>

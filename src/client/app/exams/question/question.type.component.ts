@@ -49,6 +49,7 @@ export class QuestionTypeComponent extends QuestionAnswerComponent implements On
         return (new Observable<any>((observer: any) => {
             if (!this.form.valid) { observer.error('form is not valid'); }
             else {
+
                 let result = (!!this.value && !!this.value.trim().length);
 
                 observer.next(result);

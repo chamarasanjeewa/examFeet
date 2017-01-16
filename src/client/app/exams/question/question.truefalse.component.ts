@@ -16,7 +16,7 @@ export class QuestionTrueFalseComponent extends QuestionAnswerComponent implemen
     @Input() question: any;
     protected evaluations: any[];
     protected get value(): any {
-        return this.form.value;
+        return Object.values(this.form.value);
     }
 
     constructor(public fb: FormBuilder) {
@@ -25,8 +25,7 @@ export class QuestionTrueFalseComponent extends QuestionAnswerComponent implemen
 
     }
 
-    protected createForm(): FormGroup {
-         
+    protected createForm(): FormGroup {         
         var form = this.fb.group({});
         for (let idx in this.choices) {
             form.addControl('answer[' + idx + ']', new FormControl(false));
@@ -34,31 +33,24 @@ export class QuestionTrueFalseComponent extends QuestionAnswerComponent implemen
         return form;
     }
 
-    protected evaluateChoicesAndShowAnswers(): void {
-         
-
+    protected evaluateChoicesAndShowAnswers(): void { 
         this.evaluations = this.choices.map((elm: any, idx: number) => {
-            var values = Object.values(this.value);
             return (elm.type === ANSWER_TYPE.TRUE) ? ANSWER_EVALUATION_TYPE.CORRECT
-                : (elm.type === ANSWER_TYPE.FALSE && !!values[idx]) ? ANSWER_EVALUATION_TYPE.WRONG
+                : (elm.type === ANSWER_TYPE.FALSE && !!this.value[idx]) ? ANSWER_EVALUATION_TYPE.WRONG
                     : ANSWER_EVALUATION_TYPE.NONE;
         });
     }
 
 
-    public getAnswer(): Observable<any> {
-         
-
+    public getAnswer(): Observable<any> {         
         return (new Observable<any>((observer: any) => {
             if (!this.form.valid) { observer.error('form is not valid'); }
             else {
-
                 let result = this.choices
                     .filter((elm: any, idx: number) => {
                         return (!!this.value[idx] && elm.type === ANSWER_TYPE.TRUE)
                             || (!this.value[idx] && elm.type === ANSWER_TYPE.FALSE);
-                    })
-                    .length === this.choices.length;
+                    }).length === this.choices.length;
 
                 observer.next(result);
                 observer.complete();

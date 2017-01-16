@@ -5,9 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { SharedService } from '../shared/sharedService';
 import { HttpService } from '../services/httpService';
-/**
- * This class represents the lazy loaded AboutComponent.
- */
+import { Result } from '../core/models/index'
+
+
 @Component({
     moduleId: module.id,
     selector: 'mcq-result',
@@ -17,42 +17,41 @@ import { HttpService } from '../services/httpService';
 })
 export class ExamResultComponent implements OnInit {
 
-    priceSelectForm: FormGroup;
-    correctAnswerPercentage: any;
+    examInfo: any;
     totalCorrect: any;
     totalIncorrect: any;
+    correctAnswerPercentage: any;
     averageTimePerQuestion: any;
     totalTimeDuration: any;
-    examInfo:any;
 
-    constructor(public fb: FormBuilder, public mcqService: McqService, private route: ActivatedRoute, private router: Router, private sharedService: SharedService) {
-        //debugger;
+
+    constructor(public fb: FormBuilder,
+        public mcqService: McqService,
+        private route: ActivatedRoute,
+        private router: Router,
+        private sharedService: SharedService) {
+
+
         this.examInfo = JSON.parse(sessionStorage.getItem('results'));
-        if (this.examInfo.results != undefined && this.examInfo.results.summary != undefined && this.examInfo.results.summary.summary != undefined && this.examInfo.results.summary.summary.length > 0) {
-            var summary = this.examInfo.results.summary.summary[0];
-            this.totalCorrect = summary.correct;
-            var totalQuestions = summary.total;
-            debugger;
-            this.correctAnswerPercentage =( (this.totalCorrect / totalQuestions) * 100).toFixed(1);
+        if (!!this.examInfo.results && !!this.examInfo.results) {
 
-            this.totalIncorrect = totalQuestions - this.totalCorrect;
-            this.totalTimeDuration =  ((this.examInfo.results.summary.totalTimeTaken/1000)).toFixed(1);
-            this.averageTimePerQuestion = ((this.totalTimeDuration / totalQuestions)).toFixed(1);
+            var _results: Result = Object.assign(new Result(), this.examInfo.results);
+            this.totalCorrect = _results.correct;
+            this.totalIncorrect = _results.incorrect;
+            this.correctAnswerPercentage = _results.percentage.toFixed(1);
+            this.averageTimePerQuestion = (_results.averageDuration / 1000).toFixed(1);
+            this.totalTimeDuration = (_results.duration / 1000).toFixed(1);
         }
-
-
     }
 
-    ngOnInit() {
-
-
-    }
+    ngOnInit() { }
 
     showHistory() {
-         this.router.navigateByUrl('/subscriptions');
+        this.router.navigateByUrl('/subscriptions');
     }
 
     showQuestion() {
-        this.router.navigateByUrl('/exams/' + this.examInfo.serviceId + '/start');
+        var _url = '/exams/' + this.examInfo.serviceId + ((!this.examInfo.isTry) ? '/start' : '/try');
+        this.router.navigateByUrl(_url);
     }
 }

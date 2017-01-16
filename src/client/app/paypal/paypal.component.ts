@@ -30,7 +30,7 @@ export class PaypalComponent implements OnInit {
   }
 
   submit(form:any){
-    debugger;
+
     this.postInfo();
   }
 
@@ -47,7 +47,7 @@ export class PaypalComponent implements OnInit {
   }
 
   subscribeToExam() {//TODO this should be verified with the payment in paypal
-    debugger;
+
     var examSubscriptionInfo = JSON.parse(sessionStorage.getItem('examSubscriptionInfo'));
     var user = JSON.parse(sessionStorage.getItem('userInfo') || '{}');
     
