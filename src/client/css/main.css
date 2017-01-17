@@ -68,12 +68,24 @@ body {
 .main-left-navigation>li>a{
   color:#fff;
   font-weight: 300;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+.main-left-navigation>li>a:hover,
+.main-left-navigation>li>a:focus{
+  background: none;
+  font-size: 24px;
 }
 .main-left-navigation>li:first-child{
   padding-left: 15px;
   margin-bottom: 10px;
   font-size: 14px;
   font: 300;
+}
+.navigation-toggle{
+  margin-left: 320px;
 }
 /*login / signin page css*/
 
@@ -164,45 +176,3 @@ small{
   color:#d12e2e;
 }
 /*login / signin page css*/
-/*
-p {
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  line-height: 20px;
-  margin-bottom: 1em;
-  margin-top: 1em;
-}
-
-ul {
-  margin: 10px 0 0;
-#ff0000  padding: 0 0 0 20px;
-}
-
-li {
-  font-weight: 400;
-  margin-top: 4px;
-}*/
-
-/*input {
-  border: 1px solid #106cc8;
-  font-size: 14px;
-  height: 40px;
-  outline: none;
-  padding: 8px;
-}
-
-button {
-  background-color: #106cc8;
-  border-style: none;
-  color: rgba(255, 255, 255, 0.87);
-  cursor: pointer;
-  display: inline-block;
-  font-size: 14px;
-  height: 40px;
-  padding: 8px 18px;
-  text-decoration: none;
-}
-
-button:hover {
-  background-color: #28739e;
-}*/
