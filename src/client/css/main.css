@@ -42,6 +42,11 @@ body {
   display: block;
   margin-top: 60px;
 }
+.home{
+   
+    position:relative;
+}
+
 .logo{
   width: 169px;
   margin-top: 30px;
