@@ -1,14 +1,30 @@
+<div class="container" *ngIf="!!subscriptions">
 
-<div *ngIf="!!subscriptions">
-    <ul>
+    <div class="row">
+        <div class="col-sm-4"><span class="label label-default">Exam name</span></div>
+        <div class="col-sm-4"><span class="label label-default">Completed</span></div>
+        <div class="col-sm-4"><span class="label label-default">Pending</span></div>
+
+    </div>
+
+    <div class="row" *ngFor="let subscription of subscriptions" (click)="selectSubscription(subscription)">
+        <div class="col-sm-4 align-center">{{subscription.serviceName}}</div>
+        <div class="col-sm-4 align-center"> {{subscription.completedSessionsCount}}</div>
+        <div class="col-sm-4 align-center"> {{subscription.notCompletedSessionsCount}}</div>
+
+    </div>
+
+
+    <!--<ul>
+
         <li *ngFor="let subscription of subscriptions" (click)="selectSubscription(subscription)">
-            <div>     
+            <div>
                 <span>{{subscription.serviceName}}</span>
             </div>
-            <div>     
+            <div>
                 <span>Completed: {{subscription.completedSessionsCount}}</span>
                 <span>Pending: {{subscription.notCompletedSessionsCount}}</span>
-            </div>       
+            </div>
         </li>
-    </ul>
+    </ul>-->
 </div>
