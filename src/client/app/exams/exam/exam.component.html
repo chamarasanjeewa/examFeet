@@ -7,11 +7,11 @@
     <div>Exam Provider <span>{{exam?.provider}}</span></div>
     <div>Number of questions available <span>{{exam?.questionsCount}}</span></div>
 
-<div *ngIf="canTry" class="row content-padding">
-    <button class="button button-full exam-infobtn" (click)="try()">Try</button>
+<div *ngIf="canTry" class=" content-padding">
+    <button class="btn btn-success" (click)="try()">Try</button>
 </div>
 
-<div class="row content-padding exam-info">
+<!-- <div class="row content-padding exam-info">
     <div class="col col-100 ">
         <h3>Licence Period</h3>
         <select [(ngModel)]="selectedMonth" (change)="calculateSubscriptionCost($event)" *ngIf="months.length">
@@ -20,14 +20,15 @@
 
 
     </div>
-</div>
+</div> -->
 
-<div class="row content-padding">{{subscriptionCost}}</div>
+<!-- <div class="row content-padding">{{subscriptionCost}}</div>
 <div class="row content-padding">
     <button type="submit" class="button button-full exam-infobtn" [disabled]="subscriptionCost==undefined" (click)="purchaseSubsciption()">Purchase Now</button>
-</div>
-=======
 </div>-->
+
+</div>
+</div>
 
 
 
@@ -51,4 +52,3 @@
           <button type="submit" class="btn btn-success" [disabled]="subscriptionCost==undefined" (click)="purchaseSubsciption()">Purchase Now</button>
         </div>
     </div>
-

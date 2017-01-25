@@ -47,8 +47,8 @@
     </form>
 </div>
     <div>
-        <ul>
-            <li *ngFor="let exam of exams" (click)="selectExam(exam)">
+        <ul class="exam-list">
+            <li *ngFor="let exam of exams" (click)="selectExam(exam)" >
                 <span>{{exam.exam}}</span>
                 <span>{{exam.shortDescription}}</span>
             </li>

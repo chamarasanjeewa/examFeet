@@ -43,7 +43,7 @@ body {
   margin-top: 60px;
 }
 .home{
-   
+
     position:relative;
 }
 
@@ -181,3 +181,22 @@ small{
   color:#d12e2e;
 }
 /*login / signin page css*/
+
+/*exam search page result section*/
+.exam-list{
+  margin: 0;
+  padding: 0;
+}
+.exam-list li{
+  list-style: none;
+  border-bottom: 1px solid #fff;
+
+  padding:10px 20px;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+.exam-list li:hover{
+  background:  rgba(128,176,24, 0.2);
+}
