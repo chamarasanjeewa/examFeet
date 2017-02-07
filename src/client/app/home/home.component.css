@@ -1,4 +1,4 @@
-:host {
+/*:host {
   display: block;
   padding: 0 16px;
 }
@@ -10,4 +10,16 @@ input {
 ul {
   list-style-type: none;
   padding: 0 0 0 8px;
+}*/
+
+.outlet{
+    margin-left:330px;
+    position:relative;
+    
+}
+
+
+.navBar{
+    margin:40px;
+    position:relative;
 }

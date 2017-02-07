@@ -1,33 +1,56 @@
-<h2>Search Exams</h2>
+<div class="row">
+    <div class="col-md-12">
+        <h2>Search Exams</h2>
+    </div>
 
-<form [formGroup]="searchForm" (ngSubmit)="searchExams()">
+    <form [formGroup]="searchForm" (ngSubmit)="searchExams()">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>search text</label>
+            <input type="text" class="form-control" formControlName="searchText" placeholder="search text">
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <label>Country</label>
+            <select class="form-control" formControlName="country" *ngIf="countries.length">
+                <option *ngFor="let opt of countries"  [ngValue]="opt" >{{opt.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+            <label>Faculty</label>
+            <select class="form-control" formControlName="faculty" (ngModelChange)="loadFacultySpecializations($event)" *ngIf="faculties.length">
+                <option *ngFor="let opt of faculties" [selected]="faculties[0]" [ngValue]="opt">{{opt.facultyName}}</option>
+            </select>
+          </div>
+        </div>
 
-    <label>search text</label>
-    <input type="text" class="form-control" formControlName="searchText" placeholder="search text">
+        <div class="col-md-3">
+            <div class="form-group">
+            <label>Specialization</label>
+            <select class="form-control" formControlName="speciality" *ngIf="facultySpecializations && facultySpecializations.length">
+            <option *ngFor="let opt of facultySpecializations" [selected]="facultySpecializations[0]" [ngValue]="opt">{{opt.name}}</option>
+          </select>
+        </div>
+        </div>
 
-    <label>Country</label>
-    <select formControlName="country" *ngIf="countries.length">
-      <option *ngFor="let opt of countries"  [ngValue]="opt" >{{opt.name}}</option>
-    </select>
+        <div class="col-md-1">
+          <div class="form-group">
+            <label >&nbsp; &nbsp;</label>
+            <br>
+            <button type="submit" class="btn btn-success" [disabled]="!searchForm.valid">Search</button>
+        </div>
+      </div>
 
-    <label>Faculty</label>
-    <select formControlName="faculty" (ngModelChange)="loadFacultySpecializations($event)" *ngIf="faculties.length">
-      <option *ngFor="let opt of faculties" [selected]="faculties[0]" [ngValue]="opt">{{opt.facultyName}}</option>
-    </select>
-
-    <label>Specialization</label>
-    <select formControlName="speciality" *ngIf="facultySpecializations && facultySpecializations.length">
-      <option *ngFor="let opt of facultySpecializations" [selected]="facultySpecializations[0]" [ngValue]="opt">{{opt.name}}</option>
-    </select>
-
-    <button type="submit" class="btn btn-default" [disabled]="!searchForm.valid">Search</button>
-</form>
-
-<div>
-    <ul>
-        <li *ngFor="let exam of exams" (click)="selectExam(exam)">
-            <span>{{exam.exam}}</span>
-            <span>{{exam.shortDescription}}</span>
-        </li>
-    </ul>
+    </form>
 </div>
+    <div>
+        <ul class="exam-list">
+            <li *ngFor="let exam of exams" (click)="selectExam(exam)" >
+                <span>{{exam.exam}}</span>
+                <span>{{exam.shortDescription}}</span>
+            </li>
+        </ul>
+    </div>

@@ -1,7 +1,39 @@
-<nav>
+<nav class="navbar navbar-green navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand " (click)=toggle()>
+                <i class="fa fa-bars  fa-lg"></i>
+            </a>
+            <a class="navbar-brand" >
+                <img src="../../../../assets/images/logo-nav.png" alt="">
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- <nav class="main-left-navigation">
   <a [routerLink]="['/dashBoard']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">Dashboard</a>
   <a [routerLink]="['/exams']" [routerLinkActive]="['router-link-active']">Exams</a>
   <a [routerLink]="['/subscriptions']" [routerLinkActive]="['router-link-active']">My subscriptions</a>
   <a [routerLink]="['/about']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">About</a>
   <a [routerLink]="['/login']" [routerLinkActive]="['router-link-active']">Logout</a>
-</nav>
+</nav> -->
+
+<ul class="nav nav-pills nav-stacked main-left-navigation" [hidden]="!menuVisible">
+ <li></li>
+    <li>
+        <a [routerLink]="['/dashBoard']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}" (click)=toggle()>Dashboard</a>
+    </li>
+    <li>
+        <a [routerLink]="['/exams']" [routerLinkActive]="['router-link-active']" (click)=toggle()>Exams</a>
+    </li>
+    <li>
+        <a [routerLink]="['/subscriptions']" [routerLinkActive]="['router-link-active']" (click)=toggle()>My subscriptions</a>
+    </li>
+    <li>
+        <a [routerLink]="['/about']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}" (click)=toggle()>About</a>
+    </li>
+    <li>
+        <a [routerLink]="['/login']" [routerLinkActive]="['router-link-active']" >Logout</a>
+    </li>
+</ul>
