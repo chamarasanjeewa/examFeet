@@ -1,16 +1,22 @@
-Question Content
 
-<video *ngIf="!!question.videoUrl" width="100%" height="auto" controls>
-  <source [src]="question.videoUrl" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<div *ngIf="!!question.videoUrl" class="col-md-6 col-xs-12">
+  <video  width="100 %" height="auto" controls>
+    <source [src]="question.videoUrl" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
 
-<audio *ngIf="!!question.audioUrl" controls>
-  <source [src]="question.audioUrl" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+<div *ngIf="!!question.audioUrl" class="col-md-6 col-xs-12">
+  <audio  controls>
+    <source [src]="question.audioUrl" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</div>
 
-<img *ngIf="question.imageUrl" [src]="question.imageUrl" width="100%" height="auto" />
+<div *ngIf="question.imageUrl"  class="col-md-6 col-xs-12">
+  <img [src]="question.imageUrl" width="100%" height="auto" />
+</div>
 
-<p>{{question.content}}</p>
-
+<div class="col-md-12">
+  <p>{{question.content}}</p>
+</div>

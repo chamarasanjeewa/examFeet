@@ -1,17 +1,18 @@
 <div class="row">
-  <div class="col-md-12">
-    <h2>
+    <div class="col-md-12">
+        <h2>
         {{exam?.name}}</h2>
-    <p>{{exam?.longDescription}}</p>
+        <p>{{exam?.longDescription}}</p>
 
-    <div>Exam Provider <span>{{exam?.provider}}</span></div>
-    <div>Number of questions available <span>{{exam?.questionsCount}}</span></div>
+        <div>Exam Provider <span>{{exam?.provider}}</span></div>
+        <div>Number of questions available <span>{{exam?.questionsCount}}</span></div>
 
-<div *ngIf="canTry" class=" content-padding">
-    <button class="btn btn-success" (click)="try()">Try</button>
-</div>
+        <div *ngIf="canTry" class=" content-padding">
+          <br>
+            <button class="btn btn-success" (click)="try()">Try</button>
+        </div>
 
-<!-- <div class="row content-padding exam-info">
+        <!-- <div class="row content-padding exam-info">
     <div class="col col-100 ">
         <h3>Licence Period</h3>
         <select [(ngModel)]="selectedMonth" (change)="calculateSubscriptionCost($event)" *ngIf="months.length">
@@ -22,33 +23,40 @@
     </div>
 </div> -->
 
-<!-- <div class="row content-padding">{{subscriptionCost}}</div>
+        <!-- <div class="row content-padding">{{subscriptionCost}}</div>
 <div class="row content-padding">
     <button type="submit" class="button button-full exam-infobtn" [disabled]="subscriptionCost==undefined" (click)="purchaseSubsciption()">Purchase Now</button>
 </div>-->
 
-</div>
-</div>
-
-
-
-
-    <div class="row ">
-<div class="col-md-12">
-  <h3>Licence Period</h3>
+    </div>
 </div>
 
-            <div class="col-md-3 ">
-              <div class="form-group">
-            <select  class="form-control" [(ngModel)]="selectedMonth"  (change)="calculateSubscriptionCost($event)" *ngIf="months.length">
+
+
+
+<div class="row ">
+    <div class="col-md-12">
+        <h3>Licence Period</h3>
+    </div>
+
+    <div class="col-md-3 ">
+        <div class="form-group">
+          <label>Select Period</label>
+            <select class="form-control" [(ngModel)]="selectedMonth" (change)="calculateSubscriptionCost($event)" *ngIf="months.length">
                 <option *ngFor="let opt of months" [selected]="months[0]" [ngValue]="opt">{{opt.value}}</option>
             </select>
-          </div>
-        </div>
-        <div class="col-md-1">
-          <p>{{subscriptionCost}}</p>
-        </div>
-        <div class="col-md-2">
-          <button type="submit" class="btn btn-success" [disabled]="subscriptionCost==undefined" (click)="purchaseSubsciption()">Purchase Now</button>
         </div>
     </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>Amount ($)</label>
+        <p>{{subscriptionCost}}</p>
+      </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+          <label>&nbsp; </label>
+        <button type="submit" class="btn btn-success form-control" [disabled]="subscriptionCost==undefined" (click)="purchaseSubsciption()">Purchase Now</button>
+      </div>
+    </div>
+</div>

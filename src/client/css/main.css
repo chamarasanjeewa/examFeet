@@ -29,6 +29,9 @@ body {
   background-attachment: fixed;
   background-size:  cover;
 }
+hr{
+      border-top: 1px solid #5cb85c;
+}
 .bg-image:after{
   position: fixed;
   top: 0;
@@ -199,4 +202,10 @@ small{
 }
 .exam-list li:hover{
   background:  rgba(128,176,24, 0.2);
+}
+.mcq-ul{
+  padding-left: 0;
+}
+.mcq-ul li{
+  list-style: none;
 }
