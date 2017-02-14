@@ -1,64 +1,60 @@
 <div class="row">
-  <div class="col col-100 logo ">
+  <div class="col-md-12 ">
 
     <div class="logotext search-exam-head">
       <h2>Exam Results!</h2>
       <p>Congratulations !!! You have completed the exam<br/>enjoy your results.</p>
-      <h2>Your Results</h2>
+
     </div>
 
   </div>
 </div>
 <div class="row">
 
-  <div class="col col-100 logo">
-    <div class="testresult">
-      <div class="testresult-two">
-        <h2>{{correctAnswerPercentage}} %</h2>
+  <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Your Results</h3>
       </div>
+      <div class="panel-body"> {{correctAnswerPercentage}} % </div>
     </div>
   </div>
-</div>
-<!--row-->
+  <div class="col-md-4 col-sm-6 col-xs-12 ">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Total Correct</h3>
+      </div>
+      <div class="panel-body"> {{totalCorrect}} Questions</div>
+    </div>
+  </div>
+  <div class="col-md-4 col-sm-6 col-xs-12 ">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Total Incorrect</h3>
+      </div>
+      <div class="panel-body"> {{totalIncorrect}} Questions</div>
+    </div>
+  </div>
+  <div class="col-md-4 col-sm-6 col-xs-12 ">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Average Time per Question </h3>
+      </div>
+      <div class="panel-body">{{averageTimePerQuestion}} secounds per Question</div>
+    </div>
 
-<div class="row content-padding exam-info">
-  <div class="col col-100 ">
-    <h3>Total Correct</h3>
-    <p class="test-result-analytics">{{totalCorrect}} Questions</p>
-    <hr>
+  </div>
+  <div class="col-md-4 col-sm-6 col-xs-12 ">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Time Taken </h3>
+      </div>
+      <div class="panel-body">{{totalTimeDuration}} secounds</div>
+    </div>
+
+  </div>
+  <div class="col-md-12">
+    <button class="btn btn-success  exam-infobtn" (click)="showQuestion()">Try Again</button>
+    <button class="btn btn-success exam-infobtn" (click)="showHistory()">Exam History</button>
   </div>
 </div>
-<!--row-->
-
-<div class="row content-padding exam-info">
-  <div class="col col-100 ">
-    <h3>Total Incorrect</h3>
-    <p class="test-result-analytics weak">{{totalIncorrect}} Questions</p>
-    <hr>
-  </div>
-</div>
-<!--row-->
-
-<div class="row content-padding exam-info">
-  <div class="col col-100 ">
-    <h3>Average Time per Question </h3>
-    <p class="test-result-analytics">{{averageTimePerQuestion}} secounds per Question</p>
-    <hr>
-  </div>
-</div>
-<!--row-->
-
-<div class="row content-padding exam-info">
-  <div class="col col-100 ">
-    <h3>Time Taken </h3>
-    <p class="test-result-analytics">{{totalTimeDuration}} secounds</p>
-    <hr>
-  </div>
-</div>
-<!--row-->
-
-
-
-
-<button class="button button-full exam-infobtn" (click)="showQuestion()">Try Again</button>
-<button class="button button-full exam-infobtn" (click)="showHistory()">Exam History</button>

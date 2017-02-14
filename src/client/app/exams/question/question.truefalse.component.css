@@ -3,13 +3,13 @@
   padding: 0 16px;
 }
 
-h2 {
+/*h2 {
   font-size: 20px;
   font-weight: 500;
   letter-spacing: 0.005em;
   margin-bottom: 0;
   margin-top: 0.83em;
-}
+}*/
 
 .correct {
   background-color: palegreen;

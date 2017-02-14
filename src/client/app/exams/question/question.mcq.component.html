@@ -1,10 +1,13 @@
 <form [formGroup]="form">
-  <ul class="mcq-ul">
-    <li *ngFor="let choice of choices; let i = index; trackBy: trackByFn" [ngClass]="{'correct': (showAnswer && evaluations[i] === ANSWER_EVALUATION_TYPE.CORRECT),
-          'wrong': (showAnswer && evaluations[i] === ANSWER_EVALUATION_TYPE.WRONG)}">
-      <input type="radio" formControlName="answer" value="{{choice.content}}" /> {{choice.content}}
-    </li>
-  </ul>
+  <div class="col-md-12">
+    <ul class="mcq-ul">
+      <li *ngFor="let choice of choices; let i = index; trackBy: trackByFn" [ngClass]="{'correct': (showAnswer && evaluations[i] === ANSWER_EVALUATION_TYPE.CORRECT),
+            'wrong': (showAnswer && evaluations[i] === ANSWER_EVALUATION_TYPE.WRONG)}">
+        <input type="radio" formControlName="answer" value="{{choice.content}}" /> {{choice.content}}
+      </li>
+    </ul>
+  </div>
+
 </form>
 
 <div *ngIf="isSampleQuestion">
@@ -14,6 +17,9 @@
 </div>-->
 
   <!--<textarea *ngIf="showAnswer" rows="2" cols="auto">{{explanation?.content}}</textarea>-->
-  <button type="button" class="btn btn-success"(click)="showAnswer = !showAnswer">{{!showAnswer ? "Show" : "Hide" }} Answer</button>
-</div>
 
+  <div class="col-md-12">
+    <button type="button" class="btn btn-success" (click)="showAnswer = !showAnswer">{{!showAnswer ? "Show" : "Hide" }} Answer</button>
+  </div>
+
+</div>
