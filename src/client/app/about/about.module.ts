@@ -9,6 +9,4 @@ import { AboutRoutes, AboutComponent } from './index';
     exports: [AboutComponent]
 })
 
-export class AboutModule { 
-    
-}
+export class AboutModule { }

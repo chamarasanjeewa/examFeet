@@ -1,30 +1,9 @@
-import { Component, OnInit, NgModule  } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
-import { SharedService } from '../shared/sharedService';
-import { HttpService } from '../services/httpService';
-
+import { Component } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'mcq-result',
+    selector: 'sd-dashBoard',
     templateUrl: 'dashBoard.component.html',
-    styleUrls: ['dashBoard.component.css'],
-    providers: [HttpService]
+    styleUrls: ['dashBoard.component.css']
 })
-export class DashBoardComponent implements OnInit {
-   
-    priceSelectForm: FormGroup;
-    constructor(public fb: FormBuilder, private route: ActivatedRoute,private router:Router,private sharedService:SharedService) {
-
-
-    }
-
-    
-   
-    ngOnInit() {
-
-       
-    }
-}
+export class DashboardComponent { }
